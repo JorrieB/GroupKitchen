@@ -40,7 +40,12 @@
         <div class="col-md-4">
             <div class="jumbotron">
                 <img class="restaurant_pic" src="Tom's_Restaurant,_NYC.jpg">
-                <center><span class="restaurant_name">Restaurant Name</span></center>
+                <center><span class="restaurant_name"><h2>Restaurant Name</h1></span></center>
+                <p>Hours: 7am - 11pm M-F</p>
+                <p>       9am - 12am Weekends</p>
+                <p>Cuisine: French</p>
+                <a href="#">Edit Preferences</a><br>
+                <a href="#">Edit Profile</a>
             </div>
         </div>
         
@@ -81,6 +86,68 @@
             <h4 class="modal-title" id="myModalLabel">Schedule A Pickup</h4>
           </div>
           <div class="modal-body">
+              <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-primary active">
+                    <input type="checkbox" autocomplete="off">Monday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Tuesday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Wednesday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Thursday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Friday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Saturday
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off">Sunday
+                  </label>
+                </div>
+              <div class="container pickup_options">
+                <div class="checkbox repeat_weekly">
+                  <label><input type="checkbox" value="">Repeat weekly</label>
+                </div>
+                <br>
+                  <div class="row-fluid">
+                    <div class="form-group fromTime">
+                    <label for="recipient-name" class="control-label">Pickup Time:</label>
+                    <input type="text" class="form-control" id="pickup-start">
+                  </div>
+                  <div class="btn-group amOrPm" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off"> AM
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> PM
+                      </label>
+                  </div>
+                </div>
+                <div class="row-fluid">
+                <div class="form-group toTime">
+                    <label for="recipient-name" class="control-label">To:</label>
+                    <input type="text" class="form-control" id="pickup-end">
+                  </div>
+                  <div class="btn-group amOrPm" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off"> AM
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> PM
+                      </label>
+                  </div>
+              </div>
+              <div class="row-fluid table-container">
+                  <table class = "table table-striped scheduling-table">
+                  </table>
+              </div>
+            </div>
+              
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
