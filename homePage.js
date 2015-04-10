@@ -15,4 +15,15 @@ $(document).ready( function(){
     }
     
     setupTable();
+	
+	$('#tabcal').fullCalendar({
+		header: {
+			left: 'prev, next today',
+			center: 'title',
+			right: 'month, basicWeek, basicDay'
+		},
+		editable: true,
+		eventLimit: true,
+		height: 800
+	});
 });

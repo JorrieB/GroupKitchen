@@ -1,15 +1,21 @@
 <html>
 
 <head>
-    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">    <link href = "homePage.css" rel="stylesheet">    
-    <script src = "homePage.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.js"></script>
+	<script src="homePage.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css" media="print">
+	<link rel="stylesheet" href="homePage.css">
+	
     <title>Group Kitchen</title>
 </head>        
 
-<body>
-    
+<body>    
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -51,7 +57,7 @@
         
         <!-- Calendar/History module -->
         <div class="col-md-8">
-            <div class="jumbotron test">
+            <div class="jumbotron ctnt">
                 <ul class="nav nav-tabs" id="graphTabs">
                   <li role="presentation" class="active"><a href="#calendar" role="tab" id="calendar-tab" data-toggle="tab" aria-controls="calendar" aria-expanded="false">Calendar</a></li>
                   <li role="presentation"><a href="#history" role="tab" id="history-tab" data-toggle="tab" aria-controls="history" aria-expanded="false">History</a></li>
@@ -59,12 +65,13 @@
                 
                 <div id="tabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade active in" id="calendar" aria-labelledby="calendar-tab">
-                        <p>
-                            Calendar goes here:
+						<p>
+                            <!--Calendar goes here:-->
                             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#scheduleModal">
                             Schedule
                             </button>
-                        </p>
+						</p>
+						<div id="tabcal"></div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="history" aria-labelledby="history-tab">
                         <p>
