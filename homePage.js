@@ -7,10 +7,10 @@ $(document).ready( function(){
     });
         
     function setupTable(){
-        $(".scheduling-table").append("<thead><tr><th>Quantity</th><th>Food Item</th></thead><tbody class ='scheduling-body'></tbody>");
+        $(".scheduling-table").append("<thead><tr><th>Food Item</th><th>Quantity</th></thead><tbody class ='scheduling-body'></tbody>");
         
         for(var foodItem in foodItems){
-            $(".scheduling-body").append("<tr><td class='quantity_cell'><input type='text' class='form-control quantity-input' id='foodQuantity'></td><td>" + foodItems[foodItem] + "</td></tr>");
+            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input' id='foodQuantity'></td></tr>");
         }
     }
     
