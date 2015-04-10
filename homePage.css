@@ -20,16 +20,8 @@
     align-content: center;
 }
 
-.fromTime {
-    display: inline-block;
-}
-
-.toTime {
-    display: inline-block;
-}
-
-.amOrPm {
-    display: inline;
+.disp-inline {
+	display: inline;
 }
 
 .pickup_options {
@@ -46,4 +38,13 @@
 
 .fc-day {
 	background-color: #ffffff;
+}
+
+.time-input {
+	width: 25%;
+	display: inline;
+}
+
+.center {
+	text-align: center;
 }
