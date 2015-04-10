@@ -25,5 +25,35 @@ $(document).ready( function(){
 		editable: true,
 		eventLimit: true,
 		height: 800
+		/*
+		--example events
+		events: [
+			{
+				title: 'Long Event',
+				start: '2015-02-07',
+				end: '2015-02-10'
+			},
+			{
+				id: 999,
+				title: 'Repeating Event',
+				start: '2015-02-09T16:00:00'
+			}
+		]
+		*/
+	});
+	
+	// should add the event to the calendar, but I haven't had time to test it
+	$('#save-event').('click', function() {
+		var start = 'start time';
+		var end = 'end time';
+		var title = 'title';
+		
+		var e = {
+			title: title,
+			start: start,
+			end: end
+		};
+		
+		$('#tabcal').fullCalendar('renderEvent', e, true);
 	});
 });
