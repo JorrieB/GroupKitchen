@@ -58,14 +58,59 @@ $(document).ready( function(){
 	// Once that basic functionality is in place, it would be best to add in some basic
 	// error checking/validation.
 	$('#save-event').click(function() {
-		var start = 'start time';
-		var end = 'end time';
+        //assume the user put in valid integers for now
+		var start = $('#pickup-start').val();
+		var end = $('#pickup-end').val();
+        
+        
+        
+        
 		var title = 'Food Pickup';
+        var today = new Date();
+        
+        //retrieve the check boxes' data
+        var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
+        
+        var dateBeingAdded = new Date();
+    
+        console.log(dayArray);
+        
+        for (var i = 0; i < 7; i++){
+            //the day we're on is checked, so we render an event
+            console.log(dayArray[i]);
+            if (dayArray[i]){
+                if (today.getDay() > i){
+                    dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+                } else if (today.getDay() < i){
+                    dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+                } else{
+                    if (today.getHours() <= start){
+                        dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+                    } else {
+                        dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+                    }
+                }
+                console.log(dateBeingAdded);
+                var e = {
+                    title: title,
+                    start: dateBeingAdded.getFullYear()+'-0'+(dateBeingAdded.getMonth()+1)+'-'+dateBeingAdded.getDate()+'T'+start+':00:00',
+                    end: dateBeingAdded.getFullYear()+'-0'+(dateBeingAdded.getMonth()+1)+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
+                };
+                console.log(e);
+                //render the event on the calendar
+                $('#tabcal').fullCalendar('renderEvent', e, true);
+
+            }
+        }
+        
+//        $('#buttonMon').prop('checked');
+//        console.log();
+
 		
 		var e = {
 			title: title,
-			start: '2015-04-07',
-			end: '2015-04-10'
+			start: "2015-4-15T1:00:00",
+			end: "2015-4-15T5:00:00"
 		};
 		
 		$('#tabcal').fullCalendar('renderEvent', e, true);
