@@ -60,14 +60,17 @@ $(document).ready( function(){
 	$('#save-event').click(function() {
 		var start = 'start time';
 		var end = 'end time';
-		var title = 'title';
+		var title = 'Food Pickup';
 		
 		var e = {
 			title: title,
-			start: start,
-			end: end
+			start: '2015-04-07',
+			end: '2015-04-10'
 		};
 		
 		$('#tabcal').fullCalendar('renderEvent', e, true);
+        
+        $('#scheduleModal').modal('toggle');
+        
 	});
 });
