@@ -70,10 +70,10 @@ $(document).ready( function(){
             end = '0' + end;
         }
         
-        console.log($('#startPM').prop('checked'));
-        console.log($('#endPM').prop('checked'));
+        //console.log($('#startPM').prop('checked'));
+        //console.log($('#endPM').prop('checked'));
         
-        console.log('start = '+start+' end = '+end);
+        //console.log('start = '+start+' end = '+end);
         
 		var title = 'Food Pickup';
         var today = new Date();
@@ -81,6 +81,12 @@ $(document).ready( function(){
         //retrieve the check boxes' data
         var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
         
+		
+		if (dayArray.indexOf(true) == -1 ){
+			dayArray[today.getDay()] = true;
+			console.log("beep boop");
+		}
+		
         var dateBeingAdded = new Date();
         var monthNumber;
     
@@ -113,7 +119,7 @@ $(document).ready( function(){
                     end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
                 };
                 
-                console.log(e);
+                //console.log(e);
                 //render the event on the calendar
                 $('#tabcal').fullCalendar('renderEvent', e, true);
 
