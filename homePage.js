@@ -88,7 +88,6 @@ $(document).ready( function(){
         
         for (var i = 0; i < 7; i++){
             //the day we're on is checked, so we render an event
-            console.log(dayArray[i]);
             if (dayArray[i]){
                 if (today.getDay() > i){
                     dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
@@ -105,7 +104,7 @@ $(document).ready( function(){
                 //make sure the month is formatted for the time stamp
                 monthNumber = (dateBeingAdded.getMonth()+1);
                 if(monthNumber < 10){
-                    monthNumber = '0'+monthNumber.toString;
+                    monthNumber = '0'+monthNumber.toString();
                 }
                 
                 var e = {
@@ -113,6 +112,7 @@ $(document).ready( function(){
                     start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start+':00:00',
                     end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
                 };
+                
                 console.log(e);
                 //render the event on the calendar
                 $('#tabcal').fullCalendar('renderEvent', e, true);
