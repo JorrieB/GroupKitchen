@@ -59,11 +59,21 @@ $(document).ready( function(){
 	// error checking/validation.
 	$('#save-event').click(function() {
         //assume the user put in valid integers for now
-		var start = $('#pickup-start').val();
-		var end = $('#pickup-end').val();
+		var start = (parseInt($('#pickup-start').val()) + $('#startPM').prop('checked')*12).toString();
+		var end = (parseInt($('#pickup-end').val()) + $('#endPM').prop('checked')*12).toString();
         
+        if (start < 10) {
+            start = '0' + start;
+        }
         
+        if (end < 10) {
+            end = '0' + end;
+        }
         
+        console.log($('#startPM').prop('checked'));
+        console.log($('#endPM').prop('checked'));
+        
+        console.log('start = '+start+' end = '+end);
         
 		var title = 'Food Pickup';
         var today = new Date();
@@ -72,6 +82,7 @@ $(document).ready( function(){
         var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
         
         var dateBeingAdded = new Date();
+        var monthNumber;
     
         console.log(dayArray);
         
@@ -90,11 +101,17 @@ $(document).ready( function(){
                         dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
                     }
                 }
-                console.log(dateBeingAdded);
+
+                //make sure the month is formatted for the time stamp
+                monthNumber = (dateBeingAdded.getMonth()+1);
+                if(monthNumber < 10){
+                    monthNumber = '0'+monthNumber.toString;
+                }
+                
                 var e = {
                     title: title,
-                    start: dateBeingAdded.getFullYear()+'-0'+(dateBeingAdded.getMonth()+1)+'-'+dateBeingAdded.getDate()+'T'+start+':00:00',
-                    end: dateBeingAdded.getFullYear()+'-0'+(dateBeingAdded.getMonth()+1)+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
+                    start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start+':00:00',
+                    end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
                 };
                 console.log(e);
                 //render the event on the calendar
