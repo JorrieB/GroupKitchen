@@ -1,4 +1,5 @@
 var foodItems = ["Salad", "Side Dish", "Main Course", "Dessert"];
+var setDay;
 
 $(document).ready( function(){
     $('#graphTabs a').click(function (e) {
@@ -22,6 +23,13 @@ $(document).ready( function(){
 		str = str.replace(/\s+/g, '');
 		var hour;
 		var minute;
+		
+		console.log("in parser");
+		
+		if (str.match(/^[:0-9]+$/) == null){
+			console.log("butts");
+			throw "Improper time"
+		}
 		
 		console.log("string is " + str.split(":"));
 		if (str.indexOf(":") == -1) {
@@ -104,12 +112,13 @@ $(document).ready( function(){
 	$('#save-event').click(function() {
 		var start = $("#pickup-start").val();
 		var end = $("#pickup-end").val();
+		$("#time_warning").css("display", "hidden");
 		
 		//check to make sure that the input gives integer hour or HH:MM format
 		try {
 			start = timeParser(start, $('#startPM').prop('checked'));
 		} catch (err) {
-			console.log("bad time");
+			$("#time_warning").css("display", "inline");
 		}
 		
 		//if no value entered for end, make end be 1 hour from start
@@ -117,6 +126,12 @@ $(document).ready( function(){
 			var h = start.substr(0,2);
 			var m = start.substr(2);
 			end = ((parseInt(h)+1)%24).toString() + m
+		}
+		
+		try{
+			end = timeParser(end, $('#endPM').prop('checked'));
+		} catch(err) {
+			$("#time_warning").css("display", "inline");
 		}
 		
 		var title = 'Food Pickup';
@@ -130,45 +145,58 @@ $(document).ready( function(){
 			dayArray[today.getDay()] = true;
 		}
 		
-        var dateBeingAdded = new Date();
         var monthNumber;
     
         console.log(dayArray);
-        
-        for (var i = 0; i < 7; i++){
-            //the day we're on is checked, so we render an event
-            if (dayArray[i]){
-                if (today.getDay() > i){
-                    dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
-                } else if (today.getDay() < i){
-                    dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
-                } else{
-                    if (today.getHours() <= start){
-                        dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
-                    } else {
-                        dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
-                    }
-                }
+        if (setDay == null) {
+			console.log("setDay was null");
+			var dateBeingAdded = new Date();
+			for (var i = 0; i < 7; i++){
+				//the day we're on is checked, so we render an event
+				if (dayArray[i]){
+					if (today.getDay() > i){
+						dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+					} else if (today.getDay() < i){
+						dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+					} else{
+						if (today.getHours() <= start){
+							dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+						} else {
+							dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+						}
+					}
 
-                //make sure the month is formatted for the time stamp
-                monthNumber = (dateBeingAdded.getMonth()+1);
-                if(monthNumber < 10){
-                    monthNumber = '0'+monthNumber.toString();
-                }
-                
-                var e = {
-                    title: title,
-                    start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
-                    end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
-                };
-                
-                //console.log(e);
-                //render the event on the calendar
-                $('#tabcal').fullCalendar('renderEvent', e, true);
+					//make sure the month is formatted for the time stamp
+					monthNumber = (dateBeingAdded.getMonth()+1);
+					if(monthNumber < 10){
+						monthNumber = '0'+monthNumber.toString();
+					}
+					
+					var e = {
+						title: title,
+						start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
+						end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
+					};
+					
+					//console.log(e);
+					//render the event on the calendar
+					$('#tabcal').fullCalendar('renderEvent', e, true);
 
-            }
-        }
+				}
+			}
+		} else {
+			console.log("setDay was not null");
+			var e = {
+				title: title,
+				start: setDay + 'T'+start +':00',
+				end: setDay + 'T'+end +':00'
+			}
+			$('#tabcal').fullCalendar('renderEvent', e, true);
+		}
         
+		
+		//setDay format: "2015-04-20"
+		
 //        $('#buttonMon').prop('checked');
 //        console.log();
 
@@ -182,6 +210,15 @@ $(document).ready( function(){
 		$('#tabcal').fullCalendar('renderEvent', e, true);
         
         $('#scheduleModal').modal('toggle');
+			
         
 	});
+	
+	$(".fc-future").click(function(){
+			setDay = $(this).data("date");
+			console.log(setDay + "we set the day");
+			$('#scheduleModal').modal('toggle');
+			 
+	});
+		
 });
