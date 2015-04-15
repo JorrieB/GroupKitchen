@@ -34,6 +34,7 @@ $(document).ready( function(){
 			throw "Improper time"
 		}
 		
+		
 		if (!(parseInt(hour) >= 0 && parseInt(hour) < 24) && hour.length <= 2 && !(parseInt(hour) === NaN)){
 			throw "Improper time";
 		}
@@ -51,14 +52,12 @@ $(document).ready( function(){
 			hour = "0" + hour;
 		}
 		if (minute.length == 1){
-			minute = "0" + min;
+			minute = "0" + minute;
 		}
 		
 		return hour + ":" + minute;
 	}
 	
-	console.log("whee " + timeParser("12:14", false));
-    
     setupTable();
 	
 	$('#tabcal').fullCalendar({
@@ -104,23 +103,22 @@ $(document).ready( function(){
 	// error checking/validation.
 	$('#save-event').click(function() {
 		var start = $("#pickup-start").val();
-		//TODO: make it so that f doesn't have to be filled in
 		var end = $("#pickup-end").val();
 		
+		//check to make sure that the input gives integer hour or HH:MM format
 		try {
 			start = timeParser(start, $('#startPM').prop('checked'));
 		} catch (err) {
-			console.log("ruh roh, not a good time");
+			console.log("bad time");
 		}
 		
-		console.log("this is a string parsing victory" + start);
+		//if no value entered for end, make end be 1 hour from start
+		if (end == ''){
+			var h = start.substr(0,2);
+			var m = start.substr(2);
+			end = ((parseInt(h)+1)%24).toString() + m
+		}
 		
-		
-        //console.log($('#startPM').prop('checked'));
-        //console.log($('#endPM').prop('checked'));
-        
-        //console.log('start = '+start+' end = '+end);
-        
 		var title = 'Food Pickup';
         var today = new Date();
         
@@ -130,7 +128,6 @@ $(document).ready( function(){
 		
 		if (dayArray.indexOf(true) == -1 ){
 			dayArray[today.getDay()] = true;
-			console.log("beep boop");
 		}
 		
         var dateBeingAdded = new Date();
@@ -162,7 +159,7 @@ $(document).ready( function(){
                 var e = {
                     title: title,
                     start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
-                    end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
+                    end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
                 };
                 
                 //console.log(e);
