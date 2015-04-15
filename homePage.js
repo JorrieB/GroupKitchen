@@ -13,6 +13,51 @@ $(document).ready( function(){
             $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input' id='foodQuantity'></td></tr>");
         }
     }
+	
+	//takes a input string and outputs an integer array containing the hour and minute
+	//INPUT: str representing the user's input
+	//INPUT: pm: 1 if pm, 0 if am
+	//THROWS: invalid input exception
+	function timeParser(str, pm){
+		str = str.replace(/\s+/g, '');
+		var hour;
+		var minute;
+		
+		console.log("string is " + str.split(":"));
+		if (str.indexOf(":") == -1) {
+			hour = str;
+			minute = "0";
+		}else if (str.split(":").length == 2){
+			hour = str.split(":")[0]
+			minute = str.split(":")[1]
+		} else {
+			throw "Improper time"
+		}
+		
+		if (!(parseInt(hour) >= 0 && parseInt(hour) < 24) && hour.length <= 2 && !(parseInt(hour) === NaN)){
+			throw "Improper time";
+		}
+		
+		if (!(parseInt(minute) >= 0 || parseInt(hour) < 60) && minute.length <= 2 && !(parseInt(minute) === NaN)){
+			throw "Improper time";
+		}
+		
+		if (parseInt(hour) < 12 && pm == 1){
+			hour = parseInt(hour) + 12;
+			hour = hour.toString();
+		}
+		
+		if (hour.length == 1){
+			hour = "0" + hour;
+		}
+		if (minute.length == 1){
+			minute = "0" + min;
+		}
+		
+		return hour + ":" + minute;
+	}
+	
+	console.log("whee " + timeParser("12:14", false));
     
     setupTable();
 	
@@ -58,18 +103,19 @@ $(document).ready( function(){
 	// Once that basic functionality is in place, it would be best to add in some basic
 	// error checking/validation.
 	$('#save-event').click(function() {
-        //assume the user put in valid integers for now
-		var start = (parseInt($('#pickup-start').val()) + $('#startPM').prop('checked')*12).toString();
-		var end = (parseInt($('#pickup-end').val()) + $('#endPM').prop('checked')*12).toString();
-        
-        if (start < 10) {
-            start = '0' + start;
-        }
-        
-        if (end < 10) {
-            end = '0' + end;
-        }
-        
+		var start = $("#pickup-start").val();
+		//TODO: make it so that f doesn't have to be filled in
+		var end = $("#pickup-end").val();
+		
+		try {
+			start = timeParser(start, $('#startPM').prop('checked'));
+		} catch (err) {
+			console.log("ruh roh, not a good time");
+		}
+		
+		console.log("this is a string parsing victory" + start);
+		
+		
         //console.log($('#startPM').prop('checked'));
         //console.log($('#endPM').prop('checked'));
         
@@ -115,7 +161,7 @@ $(document).ready( function(){
                 
                 var e = {
                     title: title,
-                    start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start+':00:00',
+                    start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
                     end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00:00'
                 };
                 
