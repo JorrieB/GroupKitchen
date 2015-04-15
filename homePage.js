@@ -20,7 +20,7 @@ $(document).ready( function(){
 		header: {
 			left: 'prev, next today',
 			center: 'title',
-			right: 'month, basicWeek, basicDay'
+			right: ''/*'month, basicWeek, basicDay'*/
 		},
 		editable: true,
 		eventLimit: true,
