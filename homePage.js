@@ -149,7 +149,8 @@ $(document).ready( function(){
     
         console.log(dayArray);
         if (setDay == null) {
-			console.log("setDay was null");
+			$("#daysOfWeek").css("display", "inline-block")
+			//console.log("setDay was null");
 			var dateBeingAdded = new Date();
 			for (var i = 0; i < 7; i++){
 				//the day we're on is checked, so we render an event
@@ -185,7 +186,8 @@ $(document).ready( function(){
 				}
 			}
 		} else {
-			console.log("setDay was not null");
+			//console.log("setDay was not null");
+			$("#daysOfWeek").css("display", "none");
 			var e = {
 				title: title,
 				start: setDay + 'T'+start +':00',

@@ -1,0 +1,75 @@
+.restaurant_pic {
+    width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	border: 8px solid #4B2719;
+	border-radius: 5px;
+	radius: 5px;
+}
+
+.restaurant_name {
+    width: 100%;
+    text-align: center;
+}
+
+.repeat_weekly {
+    align-self: center;
+}
+
+.pickup_options {
+    align-content: center;
+}
+
+.disp-inline {
+	display: inline;
+}
+
+.pickup_options {
+    width: 100%;
+}
+
+.quantity-cell {
+    width:20%;
+}
+
+#tabcal {
+	margin: 20px auto;
+}
+
+.fc-day {
+	background-color: #ffffff;
+}
+
+.time-input {
+	width: 25%;
+	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+#time_warning{
+	display:none;
+}
+.navbar {
+	background-image: url('woodtexture.jpg');
+}
+
+#userProfile{
+	background-color: #ffffff;
+	font-family: "Calibri", Calibri, sans-serif;
+	color: #4B2719;
+}
+
+.prefbtn{
+	align: center;
+	margin: 5px;
+	padding: -5px;
+	spacing: inline;
+	border: 2px solid #4B2719;
+	background-color: #ffffff;
+	font-family: "Calibri", Calibri, sans-serif;
+	color: #4B2719;
+	font-size: 14px;
+}
