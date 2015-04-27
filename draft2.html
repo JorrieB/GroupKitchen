@@ -54,12 +54,14 @@
                 <button class="btn prefbtn"><a href="#">Edit Profile</a></button>
             </div>
 			<!-- Donation History Module -->
-			<div class = "jumbotron"> Donation History </div>
+			<div class = "jumbotron" id="history"><span class="sectionHeading">Donation History </span>
+				<img class="restaurant pic" id="chart" src="chart.jpg"></img>
+			</div>
         </div>
         
         <div class="col-md-8">
 			<!-- Today's Pickups Module -->
-			<div class="jumbotron" id="section1"><span class="sectionheading">Today's Pickups</span> <a href="#">Schedule new Pickup</a>
+			<div class="jumbotron" id="section1"><span class="sectionheading">Today's Pickups  <button class="btn prefbtn" data-toggle="modal" data-target="#scheduleModal">Schedule new Pickup</button> </span>
 				<p>
 				<ul id="todaysPickups">
 					<li> <span class="pickuptime"> Pickup time: 6-7 </span>     <span class="foodTypes"> Food: 20 sides, 20 main dishes </span> <span class="icons"><a href="#"><font color = "#E9DC5C"><i class="fa fa-pencil"></i></font></a>
@@ -68,7 +70,30 @@
 				</ul>
 			</div>
 			<!-- Weekly View Module -->
-			<div class="jumbotron"> Upcoming Pickups </div>
+			<div class="jumbotron" id="weekly"> <span class="sectionheading"> Upcoming Pickups </span>
+				<table id = "week">
+					<tr id = "days">
+						<td class="past">Sunday</td>
+						<td class="past">Monday</td>
+						<td class="past">Tuesday</td>
+						<td class="today">Wednesday</td>
+						<td>Thursday</td>
+						<td>Friday</td>
+						<td>Saturday</td>
+					</tr>
+					<tr id = "pickups">
+						<td class="past"></td>
+						<td class="past"></td>
+						<td class="past"></td>
+						<td class="today" id="todaypickup">
+							<li class="scheduledpickup">Pickup @6-7</li>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
 			<!-- Monthly View Module -->
 			<div class="jumbotron"> Monthly View </div>
         </div>
