@@ -73,3 +73,34 @@
 	color: #4B2719;
 	font-size: 14px;
 }
+
+#section1{
+	background-color: #ffffff;
+	font-family: "Calibri", Calibri, sans-serif;
+	color: #4B2719;
+}
+
+.sectionHeading{
+	font-family: "Calibri", Calibri, sans-serif;
+	color: #4B2719;
+	font-size: 35px;
+	margin: 20px;
+}
+#todayspickups{
+	font-family: "Calibri", Calibri, sans-serif;
+	color: #4B2719;
+	font-size: 20px;
+}
+
+.pickupTime{
+	margin-right: 20px;
+}
+
+.icons{
+	float: right;
+}
+
+.fa {
+	margin-left: 5px;
+	margin-right: 5px;
+}

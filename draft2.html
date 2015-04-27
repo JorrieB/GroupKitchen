@@ -10,6 +10,7 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css" media="print">
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="draft2.css">
 	
     <title>Group Kitchen</title>
@@ -45,10 +46,10 @@
         <div class="col-md-4">
             <div class="jumbotron" id="userProfile">
                 <img class="restaurant_pic" src="lavoile.jpg">
-                <center><span class="restaurant_name"><h2>Restaurant Name</h2></span></center>
+                <center><span class="restaurant_name"><span class="sectionheading">La Voile</span></span></center>
                 <p>Hours: 7am - 11pm M-F</p>
                 <p>       9am - 12am Weekends</p>
-                <p>Cuisine: French</p>
+                <p><a href="www.lavoileboston.net">Web site</a></p>
                 <button class="btn prefbtn"><a href="#">Edit Preferences</a></button>
                 <button class="btn prefbtn"><a href="#">Edit Profile</a></button>
             </div>
@@ -58,7 +59,14 @@
         
         <div class="col-md-8">
 			<!-- Today's Pickups Module -->
-			<div class="jumbotron">Today's Pickups</div>
+			<div class="jumbotron" id="section1"><span class="sectionheading">Today's Pickups</span> <a href="#">Schedule new Pickup</a>
+				<p>
+				<ul id="todaysPickups">
+					<li> <span class="pickuptime"> Pickup time: 6-7 </span>     <span class="foodTypes"> Food: 20 sides, 20 main dishes </span> <span class="icons"><a href="#"><font color = "#E9DC5C"><i class="fa fa-pencil"></i></font></a>
+					<a href="#"><font color="green"><i class="fa fa-check"></i></font></a><a href="#"><font color="red"><i class="fa fa-times"></i></font></a></span><br>
+					<span class="notes"> Notes: Items perishable so please consume as quickly as possible </span> </li>
+				</ul>
+			</div>
 			<!-- Weekly View Module -->
 			<div class="jumbotron"> Upcoming Pickups </div>
 			<!-- Monthly View Module -->
