@@ -3,7 +3,7 @@ body {
 	font-size: 18px;
 	color: #4B2719;
 	background-color: #FFFFFF;
-	background-image: url('backtest.jpg');
+	background-image: url('backtest2.jpg');
 }
 
 a {
@@ -17,6 +17,17 @@ a:hover {
 
 h1, h2, h3,h4, h5, h6 {
 	display: inline-block;
+}
+
+hr {
+	margin: 0 auto 20px auto;
+	border-width: 3px;
+	border-color: rgba(75, 39, 25, .5);
+}
+
+td {
+	/* i can't tell if this looks better with a slight wash of color */
+	background-color: rgba(200, 52, 52, .05);
 }
 
 .navbar {
@@ -80,18 +91,6 @@ h1, h2, h3,h4, h5, h6 {
     width: 100%;
 }
 
-.quantity-cell {
-    width:20%;
-}
-
-#tabcal {
-	margin: 20px auto;
-}
-
-.fc-day {
-	background-color: #ffffff;
-}
-
 .time-input {
 	width: 25%;
 	display: inline;
@@ -101,17 +100,19 @@ h1, h2, h3,h4, h5, h6 {
 	text-align: center;
 }
 
-#time_warning{
+#time_warning {
 	display:none;
 }
 
-.prefbtn{
-	align: center;
-	margin: 5px;
-	padding: -5px;
-	spacing: inline;
-	border: 2px solid #4B2719;
+.std {
+	background-color: transparent;
+	/* border: 2px solid #4B2719; */
 	font-size: 14px;
+	float: right;
+}
+
+.std:focus {
+	outline: none;
 }
 
 .fa {
@@ -141,16 +142,15 @@ li:hover .icons {
 }
 
 #chart{
-	width: 50%;
-	margin-left: 5%;
+	width: 100%;
 }
 
-.today{
-	background-color: #FFFFB4;
+#days {
+	
 }
 
-.past {
-	background-color: #D4D4D4
+#today h3 {
+	margin-top: 0;
 }
 
 #week {
@@ -168,6 +168,17 @@ li:hover .icons {
 	vertical-align: top;
 }
 
+#week .today{
+	background-color: rgba(255, 255, 128, .5);
+}
+
+#week .past {
+	background-color: rgba(221, 221, 221, .5);
+	color: #777777;
+	border-color: #777777;
+	border-right: 0;
+}
+
 #days {
 	height: 25px;
 	text-align: center;
@@ -175,4 +186,29 @@ li:hover .icons {
 
 #pickups {
 	height: 200px;
+}
+
+#daysOfWeek {
+	width: 100%;
+	text-align: center;
+}
+
+.midtext {
+	margin: 0 20px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.bar {
+	fill: #c3a699;
+}
+
+.bar:hover {
+	fill: #9f7c6c;
 }

@@ -3,14 +3,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script src="draft2.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css" media="print">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="draft3.css">
+	
+	<script src="draft3.js"></script>
 	
     <title>Group Kitchen</title>
 </head>
@@ -29,9 +28,6 @@
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<!--ul class="nav navbar-nav">
-						<li><a href="#">About us</a></li>
-					</ul-->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">About us</a></li>
 						<li class="dropdown">
@@ -52,45 +48,18 @@
         <!-- User profile module -->
         <div class="col-md-4">
             <div>
-				<table class="profile">
-					<tr>
-						<td colspan=2><img class="restaurant_pic" src="lavoile.jpg"></td>
-					</tr>
-					<tr>
-						<td colspan=2><h2>La Voile</h2></td>
-					</tr>
-					<tr>
-						<td><a href="http://www.lavoileboston.net">http://www.lavoileboston.net</a></td>
-					</tr>
-					<tr>
-						<td colspan=2><br><!--whitespace--></td>
-					</tr>
-					<tr>
-						<td colspan=2>261 Newbury St, Boston, MA 02116</td>
-					</tr>
-					<tr>
-						<td colspan=2>(617) 587-4200</td>
-					</tr>
-					<tr>
-						<td colspan=2><br><!--whitespace--></td>
-					</tr>
-					<tr>
-						<td colspan=2>7am - 11pm M-F</td>
-					</tr>
-					<tr>
-						<td colspan=2>9am - 12am Weekends</td>
-					</tr>
-				</table>
-				<!--
-				<button class="btn prefbtn"><a href="#">Edit Preferences</a></button>
-				<button class="btn prefbtn"><a href="#">Edit Profile</a></button>
-				-->
+				<img class="restaurant_pic" src="lavoile.jpg">
+				<h2>La Voile</h2>
+				<a href="http://www.lavoileboston.net">http://www.lavoileboston.net</a><br>
+				<br>261 Newbury St, Boston, MA 02116<br>
+				(617) 587-4200<br>
+				<br>7am - 11pm M-F<br>
+				9am - 12am Weekends
             </div>
 			<br>
 			<!-- Donation History Module -->
 			<div id="history">
-				<h4>Donation History:</h4><br>
-				<img class="restaurant pic" id="chart" src="chart.jpg">
+				Donation History:<br>
 			</div>
         </div>
         
@@ -98,7 +67,8 @@
 			<!-- Today's Pickups Module -->
 			<div id="today">
 				<h3>Today's Pickups</h3>
-				<button class="btn prefbtn" data-toggle="modal" data-target="#scheduleModal">Schedule new Pickup</button>
+				<button class="btn std" data-toggle="modal" data-target="#scheduleModal">Schedule New Pickup</button>
+				<hr>
 				<ul>
 					<li>Pickup time: 6-7, Food: 20 sides, 20 main dishes
 						<span class="icons">
@@ -107,13 +77,14 @@
 							<a href="#"><i class="fa fa-times"></i></a>
 						</span>
 						<br>
-						<span class="notes">My notes: Items perishable so please consume as quickly as possible</span>
+						My notes: Items perishable so please consume as quickly as possible
 					</li>
 				</ul>
 			</div>
 			<!-- Weekly Pickups Module -->
 			<div id="weekly">
 				<h3>This Week's Pickups</h3>
+				<hr>
 				<table id="week">
 					<tr id="days">
 						<td class="past">Sunday</td>
@@ -138,10 +109,12 @@
 						<td></td>
 					</tr>
 				</table>
+				<br>
 			</div>
 			<!-- Future Pickups Module -->
 			<div id="future">
 				<h3>Future Pickups</h3>
+				<hr>
 			</div>
         </div>
     </div>
@@ -155,27 +128,27 @@
 					<h4 class="modal-title" id="myModalLabel">Schedule A Pickup</h4>
 				</div>
 				<div class="modal-body">
-					<div class="btn-group" id="daysOfWeek" data-toggle="buttons">
+					<div class="btn-group btn-group-justified" id="daysOfWeek" data-toggle="buttons">
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonMon">Monday
+							<input type="checkbox" autocomplete="off" id="buttonMon">Mon
 						</label>
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonTue">Tuesday
+							<input type="checkbox" autocomplete="off" id="buttonTue">Tues
 						</label>
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonWed">Wednesday
+							<input type="checkbox" autocomplete="off" id="buttonWed">Wed
 						</label>
 						<label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" id="buttonThu">Thursday
+                            <input type="checkbox" autocomplete="off" id="buttonThu">Thurs
 						</label>
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonFri">Friday
+							<input type="checkbox" autocomplete="off" id="buttonFri">Fri
 						</label>
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonSat">Saturday
+							<input type="checkbox" autocomplete="off" id="buttonSat">Sat
 						</label>
 						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonSun">Sunday
+							<input type="checkbox" autocomplete="off" id="buttonSun">Sun
 						</label>
 					</div>
 					<div class="container pickup_options">
@@ -198,7 +171,9 @@
 								</label>
 							</div>
 							<div class="form-group disp-inline">
-								<label for="recipient-name" class="control-label"> to </label>
+								<label for="recipient-name" class="control-label midtext">to</label>
+							</div>
+							<div class="form-group disp-inline">
 								<input type="text" class="form-control time-input" id="pickup-end">
 							</div>
 							<div class="btn-group" data-toggle="buttons">
