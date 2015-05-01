@@ -1,0 +1,178 @@
+body {
+	font-family: "Calibri", Calibri, sans-serif;
+	font-size: 18px;
+	color: #4B2719;
+	background-color: #FFFFFF;
+	background-image: url('backtest.jpg');
+}
+
+a {
+	color: #4B2719;
+}
+
+a:hover {
+	color: #4B2719;
+	text-decoration: underline;
+}
+
+h1, h2, h3,h4, h5, h6 {
+	display: inline-block;
+}
+
+.navbar {
+	/*background-color: rgba(102, 52, 52, .7);*/
+	border: 0;
+	border-radius: 0;
+}
+
+.navbar-brand {
+	font-family: sans-serif;
+	font-variant: small-caps;
+	letter-spacing: 4px;
+}
+
+.container {
+	width: 1200px;
+}
+
+.col-md-12, .col-md-4, .col-md-8 {
+	padding: 0 30px;
+}
+
+.col-md-4 {
+	width: 30%;
+}
+
+.col-md-8 {
+	width: 70%;
+}
+
+.restaurant_pic {
+    width: 100%;
+	border: 3px solid #4B2719;
+	border-radius: 10px;
+	radius: 10px;
+}
+
+.profile {
+	width: 100%;
+	font-size: 18px;
+}
+
+.profile td {
+	border: 1px;
+	vertical-align: top;
+}
+
+.repeat_weekly {
+    align-self: center;
+}
+
+.pickup_options {
+    align-content: center;
+}
+
+.disp-inline {
+	display: inline;
+}
+
+.pickup_options {
+    width: 100%;
+}
+
+.quantity-cell {
+    width:20%;
+}
+
+#tabcal {
+	margin: 20px auto;
+}
+
+.fc-day {
+	background-color: #ffffff;
+}
+
+.time-input {
+	width: 25%;
+	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+#time_warning{
+	display:none;
+}
+
+.prefbtn{
+	align: center;
+	margin: 5px;
+	padding: -5px;
+	spacing: inline;
+	border: 2px solid #4B2719;
+	font-size: 14px;
+}
+
+.fa {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.fa-pencil {
+	color: #999900;
+}
+
+.fa-check {
+	color: #009900;
+}
+
+.fa-times {
+	color: #DD0000;
+}
+
+li .icons{
+	float: right;
+	display: none;
+}
+
+li:hover .icons {
+	display: block;
+}
+
+#chart{
+	width: 50%;
+	margin-left: 5%;
+}
+
+.today{
+	background-color: #FFFFB4;
+}
+
+.past {
+	background-color: #D4D4D4
+}
+
+#week {
+	width: 100%;
+	table-layout: fixed;
+}
+
+#week ul {
+	padding: 0 20px;
+}
+
+#week td {
+	border: 2px solid #4B2719;
+	padding: 5px;
+	vertical-align: top;
+}
+
+#days {
+	height: 25px;
+	text-align: center;
+}
+
+#pickups {
+	height: 200px;
+}

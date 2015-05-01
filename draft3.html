@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -11,68 +10,112 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css" media="print">
 	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="draft2.css">
+	<link rel="stylesheet" href="draft3.css">
 	
     <title>Group Kitchen</title>
-</head>        
-
-<body>    
+</head>
+<body>
     <nav class="navbar navbar-default">
-      <div class="container-fluid">
-		<div class="navbar-header">
-			<font color="white">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only"><font color="white">Toggle navigation</font></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-			<a class="navbar-brand" href="#"><font color="white">Group Kitchen</font></a>
+        <div class="container">
+			<div class="col-md-12">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Group Kitchen</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<!--ul class="nav navbar-nav">
+						<li><a href="#">About us</a></li>
+					</ul-->
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">About us</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Edit Profile</a></li>
+									<li><a href="#">Edit Preferences</a></li>
+								</ul>
+						</li>
+						<li><a href="#">Log out</a></li>
+					</ul>
+				</div>
+			</div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#"><font color="white">About us</font></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><font color="white">Log out</font></a></li>
-            </ul>
-			</font>
-        </div>
-      </div>
     </nav>
-
-    <div class="container-fluid">
+	<br>
+    <div class="container">
         <!-- User profile module -->
         <div class="col-md-4">
-            <div class="jumbotron" id="userProfile">
-                <img class="restaurant_pic" src="lavoile.jpg">
-                <center><span style="font-size: 36px">La Voile</span></center>
-                <p>Hours: 7am - 11pm M-F</p>
-                <p>       9am - 12am Weekends</p>
-                <p><a href="http://www.lavoileboston.net">Web site</a></p>
-                <button class="btn prefbtn"><a href="#">Edit Preferences</a></button>
-                <button class="btn prefbtn"><a href="#">Edit Profile</a></button>
+            <div>
+				<table class="profile">
+					<tr>
+						<td colspan=2><img class="restaurant_pic" src="lavoile.jpg"></td>
+					</tr>
+					<tr>
+						<td colspan=2><h2>La Voile</h2></td>
+					</tr>
+					<tr>
+						<td><a href="http://www.lavoileboston.net">http://www.lavoileboston.net</a></td>
+					</tr>
+					<tr>
+						<td colspan=2><br><!--whitespace--></td>
+					</tr>
+					<tr>
+						<td colspan=2>261 Newbury St, Boston, MA 02116</td>
+					</tr>
+					<tr>
+						<td colspan=2>(617) 587-4200</td>
+					</tr>
+					<tr>
+						<td colspan=2><br><!--whitespace--></td>
+					</tr>
+					<tr>
+						<td colspan=2>7am - 11pm M-F</td>
+					</tr>
+					<tr>
+						<td colspan=2>9am - 12am Weekends</td>
+					</tr>
+				</table>
+				<!--
+				<button class="btn prefbtn"><a href="#">Edit Preferences</a></button>
+				<button class="btn prefbtn"><a href="#">Edit Profile</a></button>
+				-->
             </div>
+			<br>
 			<!-- Donation History Module -->
-			<div class = "jumbotron" id="history"><span class="sectionHeading">Donation History </span>
-				<img class="restaurant pic" id="chart" src="chart.jpg"></img>
+			<div id="history">
+				<h4>Donation History:</h4><br>
+				<img class="restaurant pic" id="chart" src="chart.jpg">
 			</div>
         </div>
         
         <div class="col-md-8">
 			<!-- Today's Pickups Module -->
-			<div class="jumbotron"><span class="sectionheading">Today's Pickups  <button class="btn prefbtn" data-toggle="modal" data-target="#scheduleModal">Schedule new Pickup</button> </span>
-				<p>
-				<ul id="todaysPickups">
-					<li> <span class="pickuptime"> Pickup time: 6-7 </span>     <span class="foodTypes"> Food: 20 sides, 20 main dishes </span> <span class="icons"><a href="#"><font color = "#E9DC5C"><i class="fa fa-pencil"></i></font></a>
-					<a href="#"><font color="green"><i class="fa fa-check"></i></font></a><a href="#"><font color="red"><i class="fa fa-times"></i></font></a></span><br>
-					<span class="notes"> Notes: Items perishable so please consume as quickly as possible </span> </li>
+			<div id="today">
+				<h3>Today's Pickups</h3>
+				<button class="btn prefbtn" data-toggle="modal" data-target="#scheduleModal">Schedule new Pickup</button>
+				<ul>
+					<li>Pickup time: 6-7, Food: 20 sides, 20 main dishes
+						<span class="icons">
+							<a href="#"><i class="fa fa-pencil"></i></a>
+							<a href="#"><i class="fa fa-check"></i></a>
+							<a href="#"><i class="fa fa-times"></i></a>
+						</span>
+						<br>
+						<span class="notes">My notes: Items perishable so please consume as quickly as possible</span>
+					</li>
 				</ul>
 			</div>
-			<!-- Weekly View Module -->
-			<div class="jumbotron" id="weekly"> <span class="sectionheading"> Upcoming Pickups </span>
-				<table id = "week">
-					<tr id = "days">
+			<!-- Weekly Pickups Module -->
+			<div id="weekly">
+				<h3>This Week's Pickups</h3>
+				<table id="week">
+					<tr id="days">
 						<td class="past">Sunday</td>
 						<td class="past">Monday</td>
 						<td class="past">Tuesday</td>
@@ -81,12 +124,14 @@
 						<td>Friday</td>
 						<td>Saturday</td>
 					</tr>
-					<tr id = "pickups">
+					<tr id="pickups">
 						<td class="past"></td>
 						<td class="past"></td>
 						<td class="past"></td>
-						<td class="today" id="todaypickup">
-							<li class="scheduledpickup">Pickup @6-7</li>
+						<td class="today">
+							<ul>
+								<li>Pickup: 6-7pm</li>
+							</ul>
 						</td>
 						<td></td>
 						<td></td>
@@ -94,8 +139,10 @@
 					</tr>
 				</table>
 			</div>
-			<!-- Monthly View Module -->
-			<div class="jumbotron"> Monthly View </div>
+			<!-- Future Pickups Module -->
+			<div id="future">
+				<h3>Future Pickups</h3>
+			</div>
         </div>
     </div>
     
