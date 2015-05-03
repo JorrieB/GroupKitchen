@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
-	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	
 	var width = $('#history')[0].offsetWidth;
-	var height = 100;
+	var height = 150;
 	var padding = 10;
 	
 	/*
@@ -16,6 +16,8 @@ $(document).ready(function() {
 	
 	var y = d3.scale.linear()
 					.range([Math.max(dataset), 0]);
+    
+    console.log(y);
 	
 	var xAxis = d3.svg.axis()
 					  .scale(x)
@@ -30,6 +32,15 @@ $(document).ready(function() {
 				.attr('width', width)
 				.attr('height', height);
 	
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + 100 + ")")
+        .call(xAxis);
+
+//    svg.append("g")
+//        .attr("class", "y axis")
+//        .call(yAxis);
+
 	svg.selectAll('rect')
 	   .data(dataset)
 	   .enter()
@@ -39,7 +50,7 @@ $(document).ready(function() {
 		   return i * (width / dataset.length);
 	   })
        .attr('y', function(d) {
-		   return height - (d * 30);
+		   return height - (d * 30) - 50;
 	   })
        .attr('width', (width / dataset.length) - padding)
        .attr('height', function(d) {
