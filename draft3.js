@@ -2,10 +2,14 @@ $(document).ready(function() {
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
 	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	
-	var width = $('#history')[0].offsetWidth;
-	var height = 150;
-	var padding = 10;
-	
+	var outer_width = $('#history')[0].offsetWidth;
+	var outer_height = 150;
+	var padding = 10;      
+    
+    var margin = { top: 10, right: 10, bottom: 10, left: 10 }
+    var width = outer_width - margin.left - margin.right;
+    var height = outer_height -margin.top - margin.bottom;
+    
 	/*
 	The graph shows, but I'm having trouble with the axes.
 	Refer to this page for tutorial: http://bl.ocks.org/d3noob/b3ff6ae1c120eea654b5
@@ -15,10 +19,8 @@ $(document).ready(function() {
 					.rangeRoundBands([0, width], .1);
 	
 	var y = d3.scale.linear()
-					.range([Math.max(dataset), 0]);
-    
-    console.log(y);
-	
+					.range([height, 0]);
+
 	var xAxis = d3.svg.axis()
 					  .scale(x)
 					  .orient('bottom');
@@ -31,15 +33,22 @@ $(document).ready(function() {
 				.append('svg')
 				.attr('width', width)
 				.attr('height', height);
-	
+
+    var tip = d3.tip().attr('class', 'd3-tip')
+      .html(function(d) {
+        return "Meals: <span style='color:red'>" + d + "</span>";
+      })
+    
+    svg.call(tip);
+    
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + 100 + ")")
         .call(xAxis);
 
-//    svg.append("g")
-//        .attr("class", "y axis")
-//        .call(yAxis);
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
 	svg.selectAll('rect')
 	   .data(dataset)
@@ -50,10 +59,12 @@ $(document).ready(function() {
 		   return i * (width / dataset.length);
 	   })
        .attr('y', function(d) {
-		   return height - (d * 30) - 50;
+		   return height - ((d+1) * 30);
 	   })
        .attr('width', (width / dataset.length) - padding)
        .attr('height', function(d) {
 		   return d * 30;
-	   });
+	   })
+       .on('mouseover', tip.show)
+       .on('mouseout', tip.hide);
 });
