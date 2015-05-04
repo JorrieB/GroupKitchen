@@ -34,7 +34,7 @@
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">About us</a></li>
+						<li><a href="#" id="aboutUs" data-toggle="modal" data-target="#aboutUsModal">About Us</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -207,13 +207,32 @@
 			</div>
 		</div>
 	</div>
+
+		<!-- About Us -->
+	<div class="modal fade" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h2 class="modal-title" id="myModalLabel">About Us</h2>
+				</div>
+				<div class="modal-body">
+					Our names are Brendan, Laura, Katie, and Jorrie, and we're all students in computer science at MIT. We were inspired by Jorrie's uncle, who runs a soup kitchen, to try to increase the quantity of food donations to soup 
+					kitchens by making the donation process easier and more efficient for restaurants and caterers. We'd love to hear your feedback at groupkitchen@mit.edu!
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
     
 	<!-- Edit Profile -->
 	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h2 class="modal-title" id="myModalLabel">Edit Profile</h2>
 				</div>
 				<div class="modal-body">
@@ -254,5 +273,7 @@
 		</div>
 	</div>
 	
+	   
+
 </body>
 </html>
