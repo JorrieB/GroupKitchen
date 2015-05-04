@@ -34,7 +34,7 @@
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">About us</a></li>
+						<li><a href="#" id="aboutUs" data-toggle="modal" data-target="#aboutUsModal">About Us</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -203,6 +203,72 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	   
+    <!-- About Us Modal -->
+    <div class="modal fade" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title" id="myModalLabel">About Us</h2>
+				</div>
+				<div class="modal-body">
+					<div class="btn-group btn-group-justified" id="daysOfWeek" data-toggle="buttons">
+                        <label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonSun">Sun
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonMon">Mon
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonTue">Tues
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonWed">Wed
+						</label>
+						<label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" id="buttonThu">Thurs
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonFri">Fri
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonSat">Sat
+						</label>
+					</div>
+					<div class="container pickup_options">
+						<div class="checkbox repeat_weekly">
+							<label><input type="checkbox" value="">Repeat weekly</label>
+						</div>
+						<div class="alert alert-warning" id="time_warning" role="alert">Please enter the time in HH:MM format</div>
+						<br>
+<!--						<label for="recipient-name" class="control-label">Pickup Time:</label><br>-->
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Pickup Time:</b>
+								<input type="text" class="form-control time-input" id="pickup-start">
+							</div>
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-primary active">
+									<input type="radio" name="options" id="startAM" autocomplete="off"> AM
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="options" id="startPM" autocomplete="off"> PM
+								</label>
+							</div>
+						</div>
+						<br>
+						<div class="row-fluid table-container">
+							<table class = "table table-striped scheduling-table"></table>
+						</div>
+					</div>  
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
