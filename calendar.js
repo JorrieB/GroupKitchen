@@ -1,13 +1,13 @@
+function addPickup(){
+    var dayOfWeek = $("#days").children().eq($(this).index()).html();
+    var firstThreeLetters = dayOfWeek.substring(0,3);
+    var dayButton = "button"+firstThreeLetters;
+    $('#scheduleModal').modal('show');
+    $("#"+dayButton).parent().addClass("active");
+    $("#"+dayButton).prop("checked","checked");
+}
+
 $(document).ready(function() {
-    
-    function addPickup(){
-        var dayOfWeek = $("#days").children().eq($(this).index()).html();
-        var firstThreeLetters = dayOfWeek.substring(0,3);
-        var dayButton = "button"+firstThreeLetters;
-        $('#scheduleModal').modal('show');
-        $("#"+dayButton).parent().addClass("active");
-        $("#"+dayButton).prop("checked","checked");
-    }
     
     $(".day").on("click", addPickup);
     $(".pickup").on("click", addPickup);
@@ -20,5 +20,11 @@ $(document).ready(function() {
         }
     })
     
+    $( "#draggable" ).sortable({
+          connectWith: ".connectedSortable"
+        }).disableSelection();
     
+    $( ".droppable" ).sortable({
+          connectWith: ".connectedSortable"
+    }).disableSelection();
 });
