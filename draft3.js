@@ -67,4 +67,12 @@ $(document).ready(function() {
 	   })
        .on('mouseover', tip.show)
        .on('mouseout', tip.hide);
+	   
+	$('#profileModal').on('shown.bs.modal', function() {
+		console.log('here');
+		$('#profile-website').val($('#website').text());
+		$('#profile-address').val($('#address').text());
+		$('#profile-phone').val($('#phone').text());
+		$('#profile-hours').val($('#hours').text().trim());
+	});
 });

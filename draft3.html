@@ -55,11 +55,11 @@
             <div>
 				<img class="restaurant_pic" src="lavoile.jpg">
 				<h2>La Voile</h2>
-				<a href="http://www.lavoileboston.net">http://www.lavoileboston.net</a><br>
-				<br>261 Newbury St, Boston, MA 02116<br>
-				(617) 587-4200<br>
-				<br>7am - 11pm M-F<br>
-				9am - 12am Weekends
+				<a href="http://www.lavoileboston.net" id="website">http://www.lavoileboston.net</a><br>
+				<br><span id="address">261 Newbury St, Boston, MA 02116</span><br>
+				<span id="phone">(617) 587-4200</span><br>
+				<br><span id="hours">7am - 11pm M-F<br>
+9am - 12am Weekends</span>
             </div>
 			<br>
 			<!-- Donation History Module -->
@@ -202,7 +202,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+					<button type="button" class="btn btn-primary" id="save-event-schedule">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -231,24 +231,13 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>City: </b>
-								<input type="text" class="form-control fourtyfive disp-inline" id="profile-city">
-							</div>
-							<div class="form-group disp-inline"><b>State: </b>
-								<input type="text" class="form-control tenth disp-inline" id="profile-state">
-							</div>
-							<div class="form-group disp-inline"><b>Zip Code: </b>
-								<input type="text" class="form-control fifteen disp-inline" id="profile-zip">
-							</div>
-						</div>
-						<div class="row-fluid">
 							<div class="form-group disp-inline"><b>Phone Number: </b>
 								<input type="text" class="form-control disp-inline" id="profile-phone">
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="form-group disp-inline"><b>Hours: </b>
-								<input type="text" class="form-control" id="profile-hours">
+								<textarea class="form-control" rows="4" id="profile-hours"></textarea>
 							</div>
 						</div>
 						<br>
@@ -259,7 +248,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+					<button type="button" class="btn btn-primary" id="save-event-profile">Save Changes</button>
 				</div>
 			</div>
 		</div>

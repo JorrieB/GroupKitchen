@@ -270,3 +270,7 @@ li:hover .icons .fa-times{
 .fourtyfive {
 	width: 45%;
 }
+
+#profile-hours {
+	resize: none;
+}
