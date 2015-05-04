@@ -72,14 +72,19 @@ $(document).ready(function() {
 		$('#profile-website').val($('#website').text());
 		$('#profile-address').val($('#address').text());
 		$('#profile-phone').val($('#phone').text());
-		$('#profile-hours').val($('#hours').text().trim());
+		$('#profile-hours').val($('#hours').html().replace('<br>', '\n'));
 	});
 	
 	$('#save-event-profile').on('click', function() {
-		$('#website').text($('#profile-website').val());
+		var website = $('#profile-website').val();
+		if (website.indexOf('http') == -1) {
+			website = 'http://' + website.substring(website.indexOf('www'));
+		}
+		$('#website').text(website);
+		$('#website').attr('href', website);
 		$('#address').text($('#profile-address').val());
 		$('#phone').text($('#profile-phone').val());
-		$('#profile-hours').text($('#profile-hours').val());
+		$('#hours').html($('#profile-hours').val().replace('\n', '<br>'));
 		$('#profileModal').modal('hide');
 	})
 });
