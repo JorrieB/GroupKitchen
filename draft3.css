@@ -8,15 +8,12 @@ body {
 
 /*Modal style*/
 .btn-primary {
-/*    background-color: #A0A0A0 ;*/
     background-color: #c3a699 ;
     border-color: #9f7c6c ;
 }
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary{
-/*    background-color: #9f7c6c;*/
     background-color: #9f7c6c  ;
     border-color: #947c6c;
-/*    border-color: inherit;*/
 }
 .modal-header{
     border-bottom:1px solid #9f7c6c;
