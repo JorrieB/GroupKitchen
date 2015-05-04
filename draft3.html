@@ -208,6 +208,25 @@
 		</div>
 	</div>
 
+		<!-- About Us -->
+	<div class="modal fade" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h2 class="modal-title" id="myModalLabel">About Us</h2>
+				</div>
+				<div class="modal-body">
+					Our names are Brendan, Laura, Katie, and Jorrie, and we're all students in computer science at MIT. We were inspired by Jorrie's uncle, who runs a soup kitchen, to try to increase the quantity of food donations to soup 
+					kitchens by making the donation process easier and more efficient for restaurants and caterers. We'd love to hear your feedback at groupkitchen@mit.edu!
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
     
 	<!-- Edit Profile -->
 	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -250,7 +269,7 @@
 							<div class="form-group disp-inline"><b>Hours: </b>
 								<input type="text" class="form-control" id="profile-hours">
 
-					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+					<button type="button" class="btn btn-primary" id="save-event" data-dismiss="modal">Save changes</button>
 
 				</div>
 			</div>
@@ -258,54 +277,6 @@
 	</div>
 	
 	   
-	<!-- About Us -->
-	<div class="modal fade" id="aboutUs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h2 class="modal-title" id="myModalLabel">About Us</h2>
-				</div>
-				<div class="modal-body">
-					<div class="container pickup_options">
-						<div class="alert alert-warning" id="time_warning" role="alert">Please enter the time in HH:MM format</div>
-						<br>
-						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>Website: </b>
-								<input type="text" class="form-control disp-inline" id="profile-website">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>Address: </b>
-								<input type="text" class="form-control disp-inline" id="profile-address">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>City: </b>
-								<input type="text" class="form-control fourtyfive disp-inline" id="profile-city">
-							</div>
-							<div class="form-group disp-inline"><b>State: </b>
-								<input type="text" class="form-control tenth disp-inline" id="profile-state">
-							</div>
-							<div class="form-group disp-inline"><b>Zip Code: </b>
-								<input type="text" class="form-control fifteen disp-inline" id="profile-zip">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>Phone Number: </b>
-								<input type="text" class="form-control disp-inline" id="profile-phone">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>Hours: </b>
-								<input type="text" class="form-control" id="profile-hours">
-
-					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 </body>
 </html>
