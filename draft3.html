@@ -211,7 +211,9 @@
     
 	<!-- Edit Profile -->
 	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
 					<h2 class="modal-title" id="myModalLabel">Edit Profile</h2>
 				</div>
 				<div class="modal-body">
@@ -254,6 +256,56 @@
 			</div>
 		</div>
 	</div>
+	
+	   
+	<!-- About Us -->
+	<div class="modal fade" id="aboutUs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h2 class="modal-title" id="myModalLabel">About Us</h2>
+				</div>
+				<div class="modal-body">
+					<div class="container pickup_options">
+						<div class="alert alert-warning" id="time_warning" role="alert">Please enter the time in HH:MM format</div>
+						<br>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Website: </b>
+								<input type="text" class="form-control disp-inline" id="profile-website">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Address: </b>
+								<input type="text" class="form-control disp-inline" id="profile-address">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>City: </b>
+								<input type="text" class="form-control fourtyfive disp-inline" id="profile-city">
+							</div>
+							<div class="form-group disp-inline"><b>State: </b>
+								<input type="text" class="form-control tenth disp-inline" id="profile-state">
+							</div>
+							<div class="form-group disp-inline"><b>Zip Code: </b>
+								<input type="text" class="form-control fifteen disp-inline" id="profile-zip">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Phone Number: </b>
+								<input type="text" class="form-control disp-inline" id="profile-phone">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Hours: </b>
+								<input type="text" class="form-control" id="profile-hours">
+
+					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 </html>
