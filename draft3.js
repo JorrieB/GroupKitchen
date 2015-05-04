@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	
+	function addPickup() {
+		console.log("beep boop");
+	}
+	
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
 	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	
@@ -67,4 +72,6 @@ $(document).ready(function() {
 	   })
        .on('mouseover', tip.show)
        .on('mouseout', tip.hide);
+	   
+	 
 });
