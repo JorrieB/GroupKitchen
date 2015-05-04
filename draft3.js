@@ -1,7 +1,10 @@
 $(document).ready(function() {
 	
+	//TODO: MAKE THIS WORK
+	//Called when the "save changes" button is clicked on the scheduling modal and populates the calendar with the pickup
 	function addPickup() {
-		console.log("beep boop");
+		var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
+		console.log(dayArray + " beep boop");
 	}
 	
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
@@ -73,5 +76,24 @@ $(document).ready(function() {
        .on('mouseover', tip.show)
        .on('mouseout', tip.hide);
 	   
-	 
+
+	$('#profileModal').on('shown.bs.modal', function() {
+		$('#profile-website').val($('#website').text());
+		$('#profile-address').val($('#address').text());
+		$('#profile-phone').val($('#phone').text());
+		$('#profile-hours').val($('#hours').text().trim());
+	});
+	
+	$('#save-event-profile').on('click', function() {
+		$('#website').text($('#profile-website').val());
+		$('#address').text($('#profile-address').val());
+		$('#phone').text($('#profile-phone').val());
+		$('#profile-hours').text($('#profile-hours').val());
+		$('#profileModal').modal('hide');
+	})
+	
+	$("#save-event-schedule").on('click', function(){
+		addPickup();
+	});
+
 });
