@@ -130,15 +130,11 @@ td {
 
 .disp-inline {
 	display: inline;
+	margin-bottom: 15px;
 }
 
 .pickup_options {
     width: 100%;
-}
-
-.time-input {
-	width: 25%;
-	display: inline;
 }
 
 .center {
@@ -176,7 +172,7 @@ li:hover .icons {
 }
 
 li:hover .icons .fa-pencil{
-	color: #999900;
+	color: #E59400;
 }
 
 li:hover .icons .fa-check{
@@ -257,4 +253,20 @@ li:hover .icons .fa-times{
 
 .bar:hover {
 	fill: #9f7c6c;
+}
+
+.tenth {
+	width: 10%;
+}
+
+.fifteen {
+	width: 15%;
+}
+
+.quarter {
+	width: 25%;
+}
+
+.fourtyfive {
+	width: 45%;
 }
