@@ -74,4 +74,12 @@ $(document).ready(function() {
 		$('#profile-phone').val($('#phone').text());
 		$('#profile-hours').val($('#hours').text().trim());
 	});
+	
+	$('#save-event-profile').on('click', function() {
+		$('#website').text($('#profile-website').val());
+		$('#address').text($('#profile-address').val());
+		$('#phone').text($('#profile-phone').val());
+		$('#profile-hours').text($('#profile-hours').val());
+		$('#profileModal').modal('hide');
+	})
 });
