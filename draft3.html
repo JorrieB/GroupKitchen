@@ -38,7 +38,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Edit Profile</a></li>
+									<li><a href="#" data-toggle="modal" data-target="#profileModal">Edit Profile</a></li>
 									<li><a href="#">Edit Preferences</a></li>
 								</ul>
 						</li>
@@ -167,7 +167,7 @@
 <!--						<label for="recipient-name" class="control-label">Pickup Time:</label><br>-->
 						<div class="row-fluid">
 							<div class="form-group disp-inline"><b>Pickup Time:</b>
-								<input type="text" class="form-control time-input" id="pickup-start">
+								<input type="text" class="form-control quarter disp-inline" id="pickup-start">
 							</div>
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn btn-primary active">
@@ -207,72 +207,53 @@
 			</div>
 		</div>
 	</div>
-	
-	   
-    <!-- About Us Modal -->
-    <div class="modal fade" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="modal-title" id="myModalLabel">About Us</h2>
+
+    
+	<!-- Edit Profile -->
+	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+					<h2 class="modal-title" id="myModalLabel">Edit Profile</h2>
 				</div>
 				<div class="modal-body">
-					<div class="btn-group btn-group-justified" id="daysOfWeek" data-toggle="buttons">
-                        <label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonSun">Sun
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonMon">Mon
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonTue">Tues
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonWed">Wed
-						</label>
-						<label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" id="buttonThu">Thurs
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonFri">Fri
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" id="buttonSat">Sat
-						</label>
-					</div>
 					<div class="container pickup_options">
-						<div class="checkbox repeat_weekly">
-							<label><input type="checkbox" value="">Repeat weekly</label>
-						</div>
 						<div class="alert alert-warning" id="time_warning" role="alert">Please enter the time in HH:MM format</div>
 						<br>
-<!--						<label for="recipient-name" class="control-label">Pickup Time:</label><br>-->
 						<div class="row-fluid">
-							<div class="form-group disp-inline"><b>Pickup Time:</b>
-								<input type="text" class="form-control time-input" id="pickup-start">
-							</div>
-							<div class="btn-group" data-toggle="buttons">
-								<label class="btn btn-primary active">
-									<input type="radio" name="options" id="startAM" autocomplete="off"> AM
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="options" id="startPM" autocomplete="off"> PM
-								</label>
+							<div class="form-group disp-inline"><b>Website: </b>
+								<input type="text" class="form-control disp-inline" id="profile-website">
 							</div>
 						</div>
-						<br>
-						<div class="row-fluid table-container">
-							<table class = "table table-striped scheduling-table"></table>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Address: </b>
+								<input type="text" class="form-control disp-inline" id="profile-address">
+							</div>
 						</div>
-					</div>  
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>City: </b>
+								<input type="text" class="form-control fourtyfive disp-inline" id="profile-city">
+							</div>
+							<div class="form-group disp-inline"><b>State: </b>
+								<input type="text" class="form-control tenth disp-inline" id="profile-state">
+							</div>
+							<div class="form-group disp-inline"><b>Zip Code: </b>
+								<input type="text" class="form-control fifteen disp-inline" id="profile-zip">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Phone Number: </b>
+								<input type="text" class="form-control disp-inline" id="profile-phone">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="form-group disp-inline"><b>Hours: </b>
+								<input type="text" class="form-control" id="profile-hours">
+
+					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+
 				</div>
 			</div>
 		</div>
 	</div>
-        
+
 </body>
 </html>
