@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	
+	//TODO: MAKE THIS WORK
+	//Called when the "save changes" button is clicked on the scheduling modal and populates the calendar with the pickup
+	function addPickup() {
+		var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
+		console.log(dayArray + " beep boop");
+	}
+	
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
 	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	
@@ -68,6 +76,7 @@ $(document).ready(function() {
        .on('mouseover', tip.show)
        .on('mouseout', tip.hide);
 	   
+
 	$('#profileModal').on('shown.bs.modal', function() {
 		$('#profile-website').val($('#website').text());
 		$('#profile-address').val($('#address').text());
@@ -87,4 +96,9 @@ $(document).ready(function() {
 		$('#hours').html($('#profile-hours').val().replace('\n', '<br>'));
 		$('#profileModal').modal('hide');
 	})
+	
+	$("#save-event-schedule").on('click', function(){
+		addPickup();
+	});
+
 });
