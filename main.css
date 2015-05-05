@@ -8,20 +8,20 @@ body {
 
 /*Modal style*/
 .btn-primary {
-    background-color: #c3a699 ;
-    border-color: #9f7c6c ;
+    background-color: #c3a699;
+    border-color: #9f7c6c;
 }
-.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary{
-    background-color: #9f7c6c  ;
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    background-color: #9f7c6c;
     border-color: #947c6c;
 }
-.modal-header{
+.modal-header {
     border-bottom:1px solid #9f7c6c;
 }
-.modal-content{
+.modal-content {
     background-color: white;
 }
-.modal-footer{
+.modal-footer {
     border-top: 1px solid #c3a699;
 }
 
@@ -162,7 +162,7 @@ td {
     color: #989898;
 }
 
-li .icons{
+li .icons {
 	float: right;
 /*	display: none;*/
 }
@@ -171,24 +171,16 @@ li:hover .icons {
 	display: block;
 }
 
-li:hover .icons .fa-pencil{
+li:hover .icons .fa-pencil {
 	color: #E59400;
 }
 
-li:hover .icons .fa-check{
+li:hover .icons .fa-check {
 	color: #009900;
 }
 
-li:hover .icons .fa-times{
+li:hover .icons .fa-times {
 	color: #DD0000;
-}
-
-#chart{
-	width: 100%;
-}
-
-#days {
-	
 }
 
 #today h3 {
@@ -210,7 +202,7 @@ li:hover .icons .fa-times{
 	vertical-align: top;
 }
 
-#week .today{
+#week .today {
 	background-color: rgba(255, 255, 128, .5);
 }
 
@@ -275,7 +267,7 @@ li:hover .icons .fa-times{
 	resize: none;
 }
 
-.event{
+.event {
     background-color: aliceblue;
     padding: 3px;
     border-radius: 3px;
@@ -285,7 +277,7 @@ li:hover .icons .fa-times{
     
 }
 
-.eventHeader{
+.eventHeader {
     border-bottom: 1px solid black;
 }
 
@@ -295,6 +287,6 @@ li:hover .icons .fa-times{
     color: gray;
 }
 
-.eventDelete:hover{
+.eventDelete:hover {
     color: red;
 }
