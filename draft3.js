@@ -102,11 +102,17 @@ $(document).ready(function() {
         
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
-                $(calendarIDs[i]).append("<div class='event'><div class='eventHeader'><a href='#'><i class='fa fa-times eventDelete'></i></a></div><p>Pickup: "+start+startPM+"-"+end+endPM+"</p></div>");
+                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader"><a href="#"><i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
             }
         }
         
-		
+        $(".eventDelete").click(function(event) {
+            console.log("jorrie");
+            event.preventDefault();
+            event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
+            event.stopPropagation();
+        });
+        
 //		if (dayArray.indexOf(true) == -1 ){
 //			dayArray[today.getDay()] = true;
 //		}
@@ -193,10 +199,12 @@ $(document).ready(function() {
 	
 	//TODO: MAKE THIS WORK
 	//Called when the "save changes" button is clicked on the scheduling modal and populates the calendar with the pickup
+    /*
 	function addPickup() {
 		var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
 		console.log(dayArray + " beep boop");
 	}
+    */
 	
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
 	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -207,7 +215,7 @@ $(document).ready(function() {
     
     var margin = { top: 10, right: 10, bottom: 10, left: 10 }
     var width = outer_width - margin.left - margin.right;
-    var height = outer_height -margin.top - margin.bottom;
+    var height = outer_height - margin.top - margin.bottom;
     
 	/*
 	The graph shows, but I'm having trouble with the axes.
@@ -288,12 +296,14 @@ $(document).ready(function() {
 		$('#profileModal').modal('hide');
 	})
 	
+    /*
 	$("#save-event-schedule").on('click', function(){
 		addPickup();
 	});
-    
+    */
     
     $(".eventDelete").click(function(event) {
+        console.log("jorrie");
         event.preventDefault();
         event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
         event.stopPropagation();
