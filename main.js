@@ -125,7 +125,8 @@ $(document).ready(function() {
         
         //retrieve the check boxes' data
         
-        var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
+        var dayArray = [$('#buttonSun').hasClass('active'),$('#buttonMon').hasClass('active'),$('#buttonTue').hasClass('active'),$('#buttonWed').hasClass('active'),$('#buttonThu').hasClass('active'),$('#buttonFri').hasClass('active'),$('#buttonSat').hasClass('active')];
+        console.log(dayArray);
         
         var foodValues = []
         
