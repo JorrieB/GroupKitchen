@@ -1,5 +1,6 @@
 var foodItems = ["Salad", "Side Dish", "Main Course", "Dessert"];
 var setDay;
+var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thursdayCal","#fridayCal","#saturdayCal"];
 
 $(document).ready(function() {
     
@@ -8,7 +9,7 @@ $(document).ready(function() {
         $(".scheduling-table").append("<thead><tr><th>Food Item</th><th>Quantity</th></thead><tbody class ='scheduling-body'></tbody>");
         
         for(var foodItem in foodItems){
-            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input foodQuantity'></td></tr>");
+            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input' id='foodQuantity'></td></tr>");
         }
     }
     
@@ -48,14 +49,14 @@ $(document).ready(function() {
 			throw "Improper time";
 		}
 		
-		if (parseInt(hour) < 12 && pm == 1){
-			hour = parseInt(hour) + 12;
-			hour = hour.toString();
-		}
+//		if (parseInt(hour) < 12 && pm == 1){
+//			hour = parseInt(hour) + 12;
+//			hour = hour.toString();
+//		}
 		
-		if (hour.length == 1){
-			hour = "0" + hour;
-		}
+//		if (hour.length == 1){
+//			hour = "0" + hour;
+//		}
 		if (minute.length == 1){
 			minute = "0" + minute;
 		}
@@ -65,7 +66,7 @@ $(document).ready(function() {
 	
     setupTable();
     
-    $('#save-event').click(function() {
+    $('#save-event-schedule').click(function() {
 		var start = $("#pickup-start").val();
 		var end = $("#pickup-end").val();
 		$("#time_warning").css("display", "hidden");
@@ -77,6 +78,8 @@ $(document).ready(function() {
 			$("#time_warning").css("display", "inline");
 		}
 		
+        var startPM = ($('#startPM').prop('checked')) ? 'pm':'am';
+        var endPM = ($('#endPM').prop('checked')) ? 'pm':'am';
 		//if no value entered for end, make end be 1 hour from start
 		if (end == ''){
 			var h = start.substr(0,2);
@@ -94,63 +97,70 @@ $(document).ready(function() {
         var today = new Date();
         
         //retrieve the check boxes' data
+        
         var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
         
+        for (var i = 0; i < dayArray.length; i++){
+            if (dayArray[i]){
+                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><li>Pickup: '+start+startPM+'-'+end+endPM+'</li></ul>');
+            }
+        }
+        
 		
-		if (dayArray.indexOf(true) == -1 ){
-			dayArray[today.getDay()] = true;
-		}
-		
-        var monthNumber;
-    
-        console.log(dayArray);
-        if (setDay == null) {
-			$("#daysOfWeek").css("display", "inline-block")
-			//console.log("setDay was null");
-			var dateBeingAdded = new Date();
-			for (var i = 0; i < 7; i++){
-				//the day we're on is checked, so we render an event
-				if (dayArray[i]){
-					if (today.getDay() > i){
-						dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
-					} else if (today.getDay() < i){
-						dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
-					} else{
-						if (today.getHours() <= start){
-							dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
-						} else {
-							dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
-						}
-					}
-
-					//make sure the month is formatted for the time stamp
-					monthNumber = (dateBeingAdded.getMonth()+1);
-					if(monthNumber < 10){
-						monthNumber = '0'+monthNumber.toString();
-					}
-					
-					var e = {
-						title: title,
-						start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
-						end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
-					};
-					
-					//console.log(e);
-					//render the event on the calendar
-					$('#tabcal').fullCalendar('renderEvent', e, true);
-
-				}
-			}
-		} else {
-			//console.log("setDay was not null");
-			$("#daysOfWeek").css("display", "none");
-			var e = {
-				title: title,
-				start: setDay + 'T'+start +':00',
-				end: setDay + 'T'+end +':00'
-			}
-			$('#tabcal').fullCalendar('renderEvent', e, true);
-		}
+//		if (dayArray.indexOf(true) == -1 ){
+//			dayArray[today.getDay()] = true;
+//		}
+//		
+//        var monthNumber;
+//    
+//        console.log(dayArray);
+//        if (setDay == null) {
+//			$("#daysOfWeek").css("display", "inline-block")
+//			//console.log("setDay was null");
+//			var dateBeingAdded = new Date();
+//			for (var i = 0; i < 7; i++){
+//				//the day we're on is checked, so we render an event
+//				if (dayArray[i]){
+//					if (today.getDay() > i){
+//						dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+//					} else if (today.getDay() < i){
+//						dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+//					} else{
+//						if (today.getHours() <= start){
+//							dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+//						} else {
+//							dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+//						}
+//					}
+//
+//					//make sure the month is formatted for the time stamp
+//					monthNumber = (dateBeingAdded.getMonth()+1);
+//					if(monthNumber < 10){
+//						monthNumber = '0'+monthNumber.toString();
+//					}
+//					
+//					var e = {
+//						title: title,
+//						start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
+//						end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
+//					};
+//					
+//					//console.log(e);
+//					//render the event on the calendar
+//					$('#tabcal').fullCalendar('renderEvent', e, true);
+//
+//				}
+//			}
+//		} else {
+//			//console.log("setDay was not null");
+//			$("#daysOfWeek").css("display", "none");
+//			var e = {
+//				title: title,
+//				start: setDay + 'T'+start +':00',
+//				end: setDay + 'T'+end +':00'
+//			}
+//			$('#tabcal').fullCalendar('renderEvent', e, true);
+//		}
         
 		
 		//setDay format: "2015-04-20"
@@ -159,14 +169,14 @@ $(document).ready(function() {
 //        console.log();
 
 		
-		var e = {
-			title: title,
-			start: "2015-4-15T1:00:00",
-			end: "2015-4-15T5:00:00"
-		};
-		
-		$('#tabcal').fullCalendar('renderEvent', e, true);
-        
+//		var e = {
+//			title: title,
+//			start: "2015-4-15T1:00:00",
+//			end: "2015-4-15T5:00:00"
+//		};
+//		
+//		$('#tabcal').fullCalendar('renderEvent', e, true);
+//        
         $('#scheduleModal').modal('toggle');
 			
         
