@@ -1,6 +1,7 @@
 var foodItems = ["Salad", "Side Dish", "Main Course", "Dessert"];
 var setDay;
 var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thursdayCal","#fridayCal","#saturdayCal"];
+var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thursdayCal","fridayCal","saturdayCal"];
 
 $(document).ready(function() {
     
@@ -9,7 +10,6 @@ $(document).ready(function() {
     var today = date.getDate();
     var weekDay = date.getDay();
     var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var dayTable = document.getElementById('days');
     var monthInt;
     for (var i = 0;i < 7;i++){
         date = new Date();
@@ -19,14 +19,14 @@ $(document).ready(function() {
         monthInt = date.getMonth() + 1;
         if(i < weekDay){
             $('#days').append('<td class="day past">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
-            $('#pickups').append('<td class="pickup past connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+            $('#pickups').append('<td class="pickup past connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
 
         }else if (i == weekDay){
             $('#days').append('<td class="day today">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
-            $('#pickups').append('<td class="pickup today connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+            $('#pickups').append('<td class="pickup today connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
         }else{
             $('#days').append('<td class="day">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
-            $('#pickups').append('<td class="pickup connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+            $('#pickups').append('<td class="pickup connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
         }
     }
     
