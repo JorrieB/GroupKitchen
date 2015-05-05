@@ -7,7 +7,7 @@ function addPickup(){
     $("#"+dayButton).prop("checked","checked");
     $("#pickup-start").val("6:00");
     $("#pickup-end").val("7:00");
-    $("#foodQuantity").val("0");
+    $(".foodQuantity").val("0");
 }
 
 $(document).ready(function() {
