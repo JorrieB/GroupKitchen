@@ -13,7 +13,7 @@ function fillFuturePickups(){
         var pickup = $(".future").eq(i)[0];
         var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
         
-        var dayIndex = todayIndex + i;
+        var dayIndex = todayIndex + i+1;
         
         var dayFormatted = $("#days").children().eq(dayIndex).html();
 
@@ -27,6 +27,28 @@ function fillFuturePickups(){
 
 }
 
+function fillTodaysPickup(){
+    $('.todayList').empty();
+    var date = new Date();
+    var todayIndex = date.getDay();
+
+    var pickup = $(".pickup").eq(todayIndex)[0];
+    var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+        
+    var pickupTime = $(pickup).children().children('.event').children('p').html();
+
+    if(foodForPickup){
+        var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a href='#'><i class='fa fa-pencil'></i></a><a href='#'><i class='fa fa-times'></i></a></span></li>";
+        $('.todayList').append(newListElement);
+    }
+    
+}
+
+
+function updatePickups(){
+    fillTodaysPickup();
+    fillFuturePickups();
+}
 
 $(document).ready(function() {
     
@@ -164,7 +186,7 @@ $(document).ready(function() {
             }
         }
         
-        fillFuturePickups();
+        updatePickups();
         
         $(".eventDelete").click(function(event) {
             event.preventDefault();
