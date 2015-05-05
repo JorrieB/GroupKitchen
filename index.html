@@ -1,13 +1,84 @@
 <html>
 <head>
-<link rel="stylesheet" href="index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="index.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="index.css">
 
-<title>Group Kitchen</title>
+	<title>Group Kitchen</title>
 </head>
 <body>
-<div id="content">
-	<h1 class="header">Group Kitchen</h1>
-	<a href="homePage.html" class="button">Login</a>
-</div>
+	<div id="content">
+		<h1 class="header">Group Kitchen</h1><br>
+		<a href="#" data-toggle="modal" data-target="#loginModal" class="button">Login</a><br>
+		<a href="#" data-toggle="modal" data-target="#signupModal" class="button">Sign Up</a>
+	</div>
+	
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="myModalLabel">Login</h2>
+				</div>
+				<div class="modal-body">
+					<div class="row-fluid">
+						<div class="form-group disp-inline"><b>Username: </b>
+							<input type="text" class="form-control disp-inline" id="login-username">
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="form-group disp-inline"><b>Password: </b>
+							<input type="password" class="form-control disp-inline" id="login-password">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="login">Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="myModalLabel">Sign Up</h2>
+				</div>
+				<div class="modal-body">
+					<div class="row-fluid">
+						<div class="form-group disp-inline"><b>Username: </b>
+							<input type="text" class="form-control disp-inline" id="signup-username">
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="form-group disp-inline"><b>Password: </b>
+							<input type="password" class="form-control disp-inline" id="signup-password">
+						</div>
+					</div>
+					<div class="row=fluid">
+						<b>I am a: </b><br>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="options" id="restaurant" autocomplete="off"> Restaurant
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="options" id="soupkitchen" autocomplete="off"> Soup Kitchen
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="signup">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
