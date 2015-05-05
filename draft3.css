@@ -201,7 +201,7 @@ li:hover .icons .fa-times{
 }
 
 #week ul {
-	padding: 0 20px;
+	padding: 0 0px;
 }
 
 #week td {
@@ -273,4 +273,28 @@ li:hover .icons .fa-times{
 
 #profile-hours {
 	resize: none;
+}
+
+.event{
+    background-color: aliceblue;
+    padding: 3px;
+    border-radius: 3px;
+    border:1px solid black;
+    font-size: 10pt;
+    display: inline-block;
+    
+}
+
+.eventHeader{
+    border-bottom: 1px solid black;
+}
+
+.eventDelete {
+    position: relative;
+    left: 80%;
+    color: gray;
+}
+
+.eventDelete:hover{
+    color: red;
 }

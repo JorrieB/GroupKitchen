@@ -102,7 +102,7 @@ $(document).ready(function() {
         
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
-                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><li>Pickup: '+start+startPM+'-'+end+endPM+'</li></ul>');
+                $(calendarIDs[i]).append("<div class='event'><div class='eventHeader'><a href='#'><i class='fa fa-times eventDelete'></i></a></div><p>Pickup: "+start+startPM+"-"+end+endPM+"</p></div>");
             }
         }
         
@@ -291,5 +291,12 @@ $(document).ready(function() {
 	$("#save-event-schedule").on('click', function(){
 		addPickup();
 	});
+    
+    
+    $(".eventDelete").click(function(event) {
+        event.preventDefault();
+        event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
+        event.stopPropagation();
+    });
 
 });

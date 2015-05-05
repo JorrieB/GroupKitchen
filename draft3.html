@@ -78,7 +78,7 @@
 					<li>Pickup time: 6-7, Food: 20 sides, 20 main dishes
 						<span class="icons">
 							<a href="#"><i class="fa fa-pencil"></i></a>
-							<a href="#"><i class="fa fa-check"></i></a>
+<!--							<a href="#"><i class="fa fa-check"></i></a>-->
 							<a href="#"><i class="fa fa-times"></i></a>
 						</span>
 						<br>
@@ -106,10 +106,16 @@
 						<td class="pickup past connectedSortable droppable" id="tuesdayCal"></td>
 						<td class="pickup today connectedSortable droppable" id="wednesdayCal">
                             
+                            <div id="specificXdiv">
 							<ul class="connectedSortable" id="draggable">
-								<li>Pickup: 6:00-7:00pm</li>
+                                <div class="event">
+                                    <div class="eventHeader">
+                                        <a href="#"><i class="fa fa-times eventDelete" onclick="destroyEvent()"></i></a>
+                                    </div>
+								    <p>Pickup: 6:00-7:00pm</p>
+                                </div>
 							</ul>
-                            
+                            </div>
 						</td>
 						<td class="pickup connectedSortable droppable" id="thursdayCal"></td>
 						<td class="pickup connectedSortable droppable" id="fridayCal"></td>
