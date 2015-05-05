@@ -4,6 +4,33 @@ var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thu
 
 $(document).ready(function() {
     
+//    Calendar creator
+    var date = new Date();
+    var today = date.getDate();
+    var weekDay = date.getDay();
+    var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var dayTable = document.getElementById('days');
+    var monthInt;
+    for (var i = 0;i < 7;i++){
+        date = new Date();
+        date.setDate(today+(i-date.getDay()));
+        console.log(abbrDates[i]+date.getDay());
+
+        monthInt = date.getMonth() + 1;
+        if(i < weekDay){
+            $('#days').append('<td class="day past">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
+            $('#pickups').append('<td class="pickup past connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+
+        }else if (i == weekDay){
+            $('#days').append('<td class="day today">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
+            $('#pickups').append('<td class="pickup today connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+        }else{
+            $('#days').append('<td class="day">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
+            $('#pickups').append('<td class="pickup connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+        }
+    }
+    
+    
 //    Modal creator and parser
     function setupTable(){
         $(".scheduling-table").append("<thead><tr><th>Food Item</th><th>Quantity</th></thead><tbody class ='scheduling-body'></tbody>");
