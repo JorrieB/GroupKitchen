@@ -192,6 +192,7 @@ $(document).ready(function() {
             event.preventDefault();
             event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
             event.stopPropagation();
+            updatePickups();
         });
         
         $('#scheduleModal').modal('toggle');
