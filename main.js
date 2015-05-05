@@ -38,10 +38,21 @@ function fillTodaysPickup(){
     var pickupTime = $(pickup).children().children('.event').children('p').html();
 
     if(foodForPickup){
-        var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a href='#'><i class='fa fa-pencil'></i></a><a href='#'><i class='fa fa-times'></i></a></span></li>";
+        var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton' href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton' href='#'><i class='fa fa-times'></i></a></span></li>";
         $('.todayList').append(newListElement);
+        $('.deleteButton').on("click",deleteTodaysPickup);
     }
     
+}
+
+function deleteTodaysPickup(){
+    var date = new Date();
+    var todayIndex = date.getDay();
+
+    var pickup = $(".pickup").eq(todayIndex)[0];
+    var foodForPickup = $(pickup).children().children('.event').remove();
+    
+    updatePickups();
 }
 
 
