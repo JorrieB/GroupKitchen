@@ -5,14 +5,50 @@ var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thurs
 var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 function fillFuturePickups(){
+    $('.futureList').empty();
     var date = new Date();
     var todayIndex = date.getDay();
+
+    for(var i = 0; i < 7-todayIndex-1; i++){
+        var pickup = $(".future").eq(i)[0];
+        var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+        
+        var dayIndex = todayIndex + i+1;
+        
+        var dayFormatted = $("#days").children().eq(dayIndex).html();
+
+        if(foodForPickup){
+            var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+            $('.futureList').append(newListElement);
+        }
+
+    }
     
-    $(".future>#draggable").each(function(){
-        console.log($(this));
-    });
+
 }
 
+function fillTodaysPickup(){
+    $('.todayList').empty();
+    var date = new Date();
+    var todayIndex = date.getDay();
+
+    var pickup = $(".pickup").eq(todayIndex)[0];
+    var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+        
+    var pickupTime = $(pickup).children().children('.event').children('p').html();
+
+    if(foodForPickup){
+        var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a href='#'><i class='fa fa-pencil'></i></a><a href='#'><i class='fa fa-times'></i></a></span></li>";
+        $('.todayList').append(newListElement);
+    }
+    
+}
+
+
+function updatePickups(){
+    fillTodaysPickup();
+    fillFuturePickups();
+}
 
 $(document).ready(function() {
     
@@ -155,10 +191,13 @@ $(document).ready(function() {
             }
         }
         
+        updatePickups();
+        
         $(".eventDelete").click(function(event) {
             event.preventDefault();
             event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
             event.stopPropagation();
+            updatePickups();
         });
         
         $('#scheduleModal').modal('toggle');
