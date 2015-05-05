@@ -25,10 +25,10 @@ $(document).ready(function() {
     })
     
     $( "#draggable" ).sortable({
-          connectWith: ".connectedSortable"
+          connectWith: ".connectedSortable", update: fillFuturePickups
         }).disableSelection();
     
     $( ".droppable" ).sortable({
-          connectWith: ".connectedSortable"
+          connectWith: ".connectedSortable", update: fillFuturePickups
     }).disableSelection();
 });

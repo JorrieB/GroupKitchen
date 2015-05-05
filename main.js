@@ -5,7 +5,7 @@ var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thurs
 var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 function fillFuturePickups(){
-    
+    $('.futureList').empty();
     var date = new Date();
     var todayIndex = date.getDay();
 
