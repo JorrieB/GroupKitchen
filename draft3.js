@@ -20,6 +20,7 @@ $(document).ready(function() {
         if(i < weekDay){
             $('#days').append('<td class="day past">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
             $('#pickups').append('<td class="pickup past connectedSortable droppable" id='+calendarIDs[i]+'></td>');
+
         }else if (i == weekDay){
             $('#days').append('<td class="day today">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
             $('#pickups').append('<td class="pickup today connectedSortable droppable" id='+calendarIDs[i]+'></td>');
@@ -75,6 +76,14 @@ $(document).ready(function() {
 			throw "Improper time";
 		}
 		
+//		if (parseInt(hour) < 12 && pm == 1){
+//			hour = parseInt(hour) + 12;
+//			hour = hour.toString();
+//		}
+		
+//		if (hour.length == 1){
+//			hour = "0" + hour;
+//		}
 		if (minute.length == 1){
 			minute = "0" + minute;
 		}
@@ -131,6 +140,76 @@ $(document).ready(function() {
             event.stopPropagation();
         });
         
+//		if (dayArray.indexOf(true) == -1 ){
+//			dayArray[today.getDay()] = true;
+//		}
+//		
+//        var monthNumber;
+//    
+//        console.log(dayArray);
+//        if (setDay == null) {
+//			$("#daysOfWeek").css("display", "inline-block")
+//			//console.log("setDay was null");
+//			var dateBeingAdded = new Date();
+//			for (var i = 0; i < 7; i++){
+//				//the day we're on is checked, so we render an event
+//				if (dayArray[i]){
+//					if (today.getDay() > i){
+//						dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+//					} else if (today.getDay() < i){
+//						dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+//					} else{
+//						if (today.getHours() <= start){
+//							dateBeingAdded.setDate(today.getDate() - today.getDay() + i);
+//						} else {
+//							dateBeingAdded.setDate(today.getDate() - today.getDay() + i + 7);
+//						}
+//					}
+//
+//					//make sure the month is formatted for the time stamp
+//					monthNumber = (dateBeingAdded.getMonth()+1);
+//					if(monthNumber < 10){
+//						monthNumber = '0'+monthNumber.toString();
+//					}
+//					
+//					var e = {
+//						title: title,
+//						start: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+start +':00',
+//						end: dateBeingAdded.getFullYear()+'-'+monthNumber+'-'+dateBeingAdded.getDate()+'T'+end+':00'
+//					};
+//					
+//					//console.log(e);
+//					//render the event on the calendar
+//					$('#tabcal').fullCalendar('renderEvent', e, true);
+//
+//				}
+//			}
+//		} else {
+//			//console.log("setDay was not null");
+//			$("#daysOfWeek").css("display", "none");
+//			var e = {
+//				title: title,
+//				start: setDay + 'T'+start +':00',
+//				end: setDay + 'T'+end +':00'
+//			}
+//			$('#tabcal').fullCalendar('renderEvent', e, true);
+//		}
+        
+		
+		//setDay format: "2015-04-20"
+		
+//        $('#buttonMon').prop('checked');
+//        console.log();
+
+		
+//		var e = {
+//			title: title,
+//			start: "2015-4-15T1:00:00",
+//			end: "2015-4-15T5:00:00"
+//		};
+//		
+//		$('#tabcal').fullCalendar('renderEvent', e, true);
+//        
         $('#scheduleModal').modal('toggle');
 			
         

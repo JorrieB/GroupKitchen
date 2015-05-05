@@ -1,0 +1,136 @@
+body {
+	font-family: "Calibri", Calibri, sans-serif;
+	font-size: 20px;
+	color: #4B2719;
+	background-color: #FFFFFF;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+.restaurant_pic {
+    width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	border: 4px solid #4B2719;
+	border-radius: 5px;
+	radius: 5px;
+}
+
+.repeat_weekly {
+    align-self: center;
+}
+
+.pickup_options {
+    align-content: center;
+}
+
+.disp-inline {
+	display: inline;
+}
+
+.pickup_options {
+    width: 100%;
+}
+
+.quantity-cell {
+    width:20%;
+}
+
+#tabcal {
+	margin: 20px auto;
+}
+
+.fc-day {
+	background-color: #ffffff;
+}
+
+.time-input {
+	width: 25%;
+	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+#time_warning{
+	display:none;
+}
+.navbar {
+	background-image: url('woodtexture.jpg');
+}
+
+.prefbtn{
+	align: center;
+	margin: 5px;
+	padding: -5px;
+	spacing: inline;
+	border: 2px solid #4B2719;
+	font-size: 14px;
+}
+
+#todayspickups{
+	font-size: 20px;
+}
+
+.pickupTime{
+	margin-right: 20px;
+}
+
+.icons{
+	float: right;
+}
+
+.fa {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#history{
+	margin-top: -15%;
+}
+
+#chart{
+	width: 50%;
+	margin-left: 5%;
+}
+
+.today{
+	background-color: #FFFFB4;
+}
+
+.past {
+	background-color: #D4D4D4
+}
+
+#weekly{
+	margin-top: -8%;
+}
+
+table{
+	width: 80%;
+}
+
+td{
+	border: 2px solid #4B2719;
+	width: 10%;
+}
+
+#days{
+	height: 25px;
+	text-align: center;
+}
+
+#pickups{
+	height: 200px;
+}
+
+.todaypickup{
+	vertical-align: top;
+}
+
+.scheduledpickup{
+	margin-left: 5px;
+}

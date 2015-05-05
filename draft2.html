@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="draft2.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.print.css" media="print">
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="draft2.css">
+	
+    <title>Group Kitchen</title>
+</head>        
+
+<body>    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+		<div class="navbar-header">
+			<font color="white">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only"><font color="white">Toggle navigation</font></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+			<a class="navbar-brand" href="#"><font color="white">Group Kitchen</font></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><font color="white">About us</font></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><font color="white">Log out</font></a></li>
+            </ul>
+			</font>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- User profile module -->
+        <div class="col-md-4">
+            <div class="jumbotron" id="userProfile">
+                <img class="restaurant_pic" src="lavoile.jpg">
+                <center><span style="font-size: 36px">La Voile</span></center>
+                <p>Hours: 7am - 11pm M-F</p>
+                <p>       9am - 12am Weekends</p>
+                <p><a href="http://www.lavoileboston.net">Web site</a></p>
+                <button class="btn prefbtn"><a href="#">Edit Preferences</a></button>
+                <button class="btn prefbtn"><a href="#">Edit Profile</a></button>
+            </div>
+			<!-- Donation History Module -->
+			<div class = "jumbotron" id="history"><span class="sectionHeading">Donation History </span>
+				<img class="restaurant pic" id="chart" src="chart.jpg"></img>
+			</div>
+        </div>
+        
+        <div class="col-md-8">
+			<!-- Today's Pickups Module -->
+			<div class="jumbotron"><span class="sectionheading">Today's Pickups  <button class="btn prefbtn" data-toggle="modal" data-target="#scheduleModal">Schedule new Pickup</button> </span>
+				<p>
+				<ul id="todaysPickups">
+					<li> <span class="pickuptime"> Pickup time: 6-7 </span>     <span class="foodTypes"> Food: 20 sides, 20 main dishes </span> <span class="icons"><a href="#"><font color = "#E9DC5C"><i class="fa fa-pencil"></i></font></a>
+					<a href="#"><font color="green"><i class="fa fa-check"></i></font></a><a href="#"><font color="red"><i class="fa fa-times"></i></font></a></span><br>
+					<span class="notes"> Notes: Items perishable so please consume as quickly as possible </span> </li>
+				</ul>
+			</div>
+			<!-- Weekly View Module -->
+			<div class="jumbotron" id="weekly"> <span class="sectionheading"> Upcoming Pickups </span>
+				<table id = "week">
+					<tr id = "days">
+						<td class="past">Sunday</td>
+						<td class="past">Monday</td>
+						<td class="past">Tuesday</td>
+						<td class="today">Wednesday</td>
+						<td>Thursday</td>
+						<td>Friday</td>
+						<td>Saturday</td>
+					</tr>
+					<tr id = "pickups">
+						<td class="past"></td>
+						<td class="past"></td>
+						<td class="past"></td>
+						<td class="today" id="todaypickup">
+							<li class="scheduledpickup">Pickup @6-7</li>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Monthly View Module -->
+			<div class="jumbotron"> Monthly View </div>
+        </div>
+    </div>
+    
+    <!-- Scheduling Modal -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Schedule A Pickup</h4>
+				</div>
+				<div class="modal-body">
+					<div class="btn-group" id="daysOfWeek" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonMon">Monday
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonTue">Tuesday
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonWed">Wednesday
+						</label>
+						<label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" id="buttonThu">Thursday
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonFri">Friday
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonSat">Saturday
+						</label>
+						<label class="btn btn-primary">
+							<input type="checkbox" autocomplete="off" id="buttonSun">Sunday
+						</label>
+					</div>
+					<div class="container pickup_options">
+						<div class="checkbox repeat_weekly">
+							<label><input type="checkbox" value="">Repeat weekly</label>
+						</div>
+						<div class="alert alert-warning" id="time_warning" role="alert">Please enter the time in HH:MM format</div>
+						<br>
+						<label for="recipient-name" class="control-label">Pickup Time:</label><br>
+						<div class="row-fluid center">
+							<div class="form-group disp-inline">
+								<input type="text" class="form-control time-input" id="pickup-start">
+							</div>
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-primary active">
+									<input type="radio" name="options" id="startAM" autocomplete="off"> AM
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="options" id="startPM" autocomplete="off"> PM
+								</label>
+							</div>
+							<div class="form-group disp-inline">
+								<label for="recipient-name" class="control-label"> to </label>
+								<input type="text" class="form-control time-input" id="pickup-end">
+							</div>
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-primary active">
+									<input type="radio" name="options" id="endAM" autocomplete="off"> AM
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="options" id="endPM" autocomplete="off"> PM
+								</label>
+							</div>
+						</div>
+						<br>
+						<div class="row-fluid table-container">
+							<table class = "table table-striped scheduling-table"></table>
+						</div>
+					</div>  
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+        
+</body>
+</html>
