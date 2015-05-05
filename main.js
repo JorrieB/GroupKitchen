@@ -2,6 +2,16 @@ var foodItems = ["Salad", "Side Dish", "Main Course", "Dessert"];
 var setDay;
 var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thursdayCal","#fridayCal","#saturdayCal"];
 var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thursdayCal","fridayCal","saturdayCal"];
+var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function fillFuturePickups(){
+    var date = new Date();
+    var todayIndex = date.getDay();
+    
+    $(".future>#draggable").each(function(){
+        console.log($(this));
+    });
+}
 
 
 $(document).ready(function() {
@@ -10,13 +20,11 @@ $(document).ready(function() {
     var date = new Date();
     var today = date.getDate();
     var weekDay = date.getDay();
-    var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dayTable = document.getElementById('days');
     var monthInt;
     for (var i = 0;i < 7;i++){
         date = new Date();
         date.setDate(today+(i-date.getDay()));
-        console.log(abbrDates[i]+date.getDay());
 
         monthInt = date.getMonth() + 1;
         if(i < weekDay){
@@ -27,7 +35,7 @@ $(document).ready(function() {
             $('#pickups').append('<td class="pickup today connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
         }else{
             $('#days').append('<td class="day">'+abbrDates[i]+' '+monthInt+'/'+date.getDate()+'</td>');
-            $('#pickups').append('<td class="pickup connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
+            $('#pickups').append('<td class="pickup future connectedSortable droppable" id='+rawCalendarIDs[i]+'></td>');
         }
     }
     
@@ -37,7 +45,8 @@ $(document).ready(function() {
         $(".scheduling-table").append("<thead><tr><th>Food Item</th><th>Quantity</th></thead><tbody class ='scheduling-body'></tbody>");
         
         for(var foodItem in foodItems){
-            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input foodQuantity'></td></tr>");
+            var firstWordFood = foodItems[foodItem].split(" ")[0];
+            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input foodQuantity "+firstWordFood+"'></td></tr>");
         }
     }
     
@@ -50,14 +59,12 @@ $(document).ready(function() {
 		var hour;
 		var minute;
 		
-		console.log("in parser");
 		
 		if (str.match(/^[:0-9]+$/) == null){
 			console.log("butts");
 			throw "Improper time"
 		}
 		
-		console.log("string is " + str.split(":"));
 		if (str.indexOf(":") == -1) {
 			hour = str;
 			minute = "0";
@@ -120,14 +127,29 @@ $(document).ready(function() {
         
         var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
         
+        var foodValues = []
+        
+        for(var foodItem in foodItems){
+            var firstWordFood = foodItems[foodItem].split(" ")[0];
+            var numberOfThisFood = $("."+firstWordFood).val();
+            foodValues.push(numberOfThisFood);
+        }
+        
+        var foodString = "";
+        for(var foodItem in foodItems){
+            var numberOfThisFood = parseInt(foodValues[foodItem]);
+            if(numberOfThisFood>0){
+                foodString += foodItems[foodItem] + ": " + numberOfThisFood + " ";
+            }
+        }
+        
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
-                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader"><a href="#"><i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
+                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
             }
         }
         
         $(".eventDelete").click(function(event) {
-            console.log("jorrie");
             event.preventDefault();
             event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
             event.stopPropagation();
@@ -140,7 +162,6 @@ $(document).ready(function() {
 	
 	$(".fc-future").click(function(){
 			setDay = $(this).data("date");
-			console.log(setDay + "we set the day");
 			$('#scheduleModal').modal('toggle');
 			 
 	});
@@ -259,4 +280,5 @@ $(document).ready(function() {
         event.stopPropagation();
     });
 
+    fillFuturePickups();
 });
