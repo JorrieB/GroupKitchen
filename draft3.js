@@ -1,4 +1,71 @@
+var foodItems = ["Salad", "Side Dish", "Main Course", "Dessert"];
+var setDay;
+
 $(document).ready(function() {
+    
+//    Modal creator and parser
+    function setupTable(){
+        $(".scheduling-table").append("<thead><tr><th>Food Item</th><th>Quantity</th></thead><tbody class ='scheduling-body'></tbody>");
+        
+        for(var foodItem in foodItems){
+            $(".scheduling-body").append("<tr><td>" + foodItems[foodItem] + "</td><td class='quantity_cell'><input type='text' class='form-control quantity-input' id='foodQuantity'></td></tr>");
+        }
+    }
+    
+    //takes a input string and outputs an integer array containing the hour and minute
+	//INPUT: str representing the user's input
+	//INPUT: pm: 1 if pm, 0 if am
+	//THROWS: invalid input exception
+	function timeParser(str, pm){
+		str = str.replace(/\s+/g, '');
+		var hour;
+		var minute;
+		
+		console.log("in parser");
+		
+		if (str.match(/^[:0-9]+$/) == null){
+			console.log("butts");
+			throw "Improper time"
+		}
+		
+		console.log("string is " + str.split(":"));
+		if (str.indexOf(":") == -1) {
+			hour = str;
+			minute = "0";
+		}else if (str.split(":").length == 2){
+			hour = str.split(":")[0]
+			minute = str.split(":")[1]
+		} else {
+			throw "Improper time"
+		}
+		
+		
+		if (!(parseInt(hour) >= 0 && parseInt(hour) < 24) && hour.length <= 2 && !(parseInt(hour) === NaN)){
+			throw "Improper time";
+		}
+		
+		if (!(parseInt(minute) >= 0 || parseInt(hour) < 60) && minute.length <= 2 && !(parseInt(minute) === NaN)){
+			throw "Improper time";
+		}
+		
+		if (parseInt(hour) < 12 && pm == 1){
+			hour = parseInt(hour) + 12;
+			hour = hour.toString();
+		}
+		
+		if (hour.length == 1){
+			hour = "0" + hour;
+		}
+		if (minute.length == 1){
+			minute = "0" + minute;
+		}
+		
+		return hour + ":" + minute;
+	}
+	
+    setupTable();
+    
+//    End modal parser/creator
 	
 	//TODO: MAKE THIS WORK
 	//Called when the "save changes" button is clicked on the scheduling modal and populates the calendar with the pickup
