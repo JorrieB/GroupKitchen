@@ -5,12 +5,26 @@ var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thurs
 var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 function fillFuturePickups(){
+    
     var date = new Date();
     var todayIndex = date.getDay();
+
+    for(var i = 0; i < 7-todayIndex-1; i++){
+        var pickup = $(".future").eq(i)[0];
+        var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+        
+        var dayIndex = todayIndex + i;
+        
+        var dayFormatted = $("#days").children().eq(dayIndex).html();
+
+        if(foodForPickup){
+            var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+            $('.futureList').append(newListElement);
+        }
+
+    }
     
-    $(".future>#draggable").each(function(){
-        console.log($(this));
-    });
+
 }
 
 
@@ -149,6 +163,8 @@ $(document).ready(function() {
                 $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
             }
         }
+        
+        fillFuturePickups();
         
         $(".eventDelete").click(function(event) {
             event.preventDefault();
