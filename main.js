@@ -3,6 +3,7 @@ var setDay;
 var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thursdayCal","#fridayCal","#saturdayCal"];
 var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thursdayCal","fridayCal","saturdayCal"];
 var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var calButtons = ['#buttonSun','#buttonMon','#buttonTue','#buttonWed','#buttonThu','#buttonFri','#buttonSat'];
 
 function fillFuturePickups(){
     $('.futureList').empty();
@@ -11,19 +12,21 @@ function fillFuturePickups(){
 
     for(var i = 0; i < 7-todayIndex-1; i++){
         var pickup = $(".future").eq(i)[0];
-        var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+        var foodsForPickup = $(pickup).children().children('.event').children('.eventHeader');
         
         var dayIndex = todayIndex + i+1;
         
         var dayFormatted = $("#days").children().eq(dayIndex).html();
 
-        if(foodForPickup){
-            var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+        for( var index =0; index < foodsForPickup.length; index ++){
+            var foodForPickup = $(foodsForPickup[index]).html();
+
+            if(foodForPickup){
+var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
             $('.futureList').append(newListElement);
+            }
         }
     }
-    
-
 }
 
 function fillTodaysPickup(){
@@ -43,18 +46,31 @@ function fillTodaysPickup(){
             var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton' href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton' href='#'><i class='fa fa-times'></i></a></span></li>";
             $('.todayList').append(newListElement);
             $('.deleteButton').on("click",deleteTodaysPickup);
+            $('.editButton').on("click",editTodaysPickup);
         }
-
     }
 
 }
 
+function editTodaysPickup(){
+    $('#scheduleModal').modal('toggle');
+    deleteTodaysPickup();
+    
+    var date = new Date();
+    var todayIndex = date.getDay();
+        
+    $(calButtons[todayIndex]).addClass('active');
+}
+
 function deleteTodaysPickup(){
+    console.log("delete pressed");
+    
     var date = new Date();
     var todayIndex = date.getDay();
 
     var pickup = $(".pickup").eq(todayIndex)[0];
     var foodForPickup = $(pickup).children().children('.event').remove();
+    
     
     updatePickups();
 }
@@ -334,7 +350,6 @@ $(document).ready(function() {
     */
     
     $(".eventDelete").click(function(event) {
-        console.log("jorrie");
         event.preventDefault();
         event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
         event.stopPropagation();
