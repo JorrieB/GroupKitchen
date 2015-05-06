@@ -24,7 +24,7 @@ function fillFuturePickups(){
             var foodForPickup = $(foodsForPickup[index]).html();
 
             if(foodForPickup){
-				var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+				var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup.split("<")[0]+"<a class = 'deleteButton delete"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-times'></i></a></li>";
             $('.futureList').append(newListElement);
             }
         }
