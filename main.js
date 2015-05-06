@@ -24,7 +24,7 @@ function fillFuturePickups(){
             var foodForPickup = $(foodsForPickup[index]).html();
 
             if(foodForPickup){
-var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+				var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
             $('.futureList').append(newListElement);
             }
         }
@@ -323,7 +323,11 @@ $(document).ready(function() {
 			}
 		} else{
 			console.log("totally was a manual date");
-			var date = dateParser($("#pickup-date").val());
+			try{
+				var date = dateParser($("#pickup-date").val());
+			} catch(err) {
+				$("#date_warning").css("display", "inline");
+			}
 			addPickup(date, foodString);
 		}
         
