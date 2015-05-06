@@ -118,9 +118,10 @@ function fillTodaysPickup(){
     for( var index =0; index < foodsForPickup.length; index ++){
         var pickupTime = $(pickupTimes[index]).html();
         var foodForPickup = $(foodsForPickup[index]).html();
+    
         
         if(foodForPickup){
-            var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton edit"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton delete"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-times'></i></a></span></li>";
+            var newListElement = "<li>From: "+pickupTime+", "+foodForPickup.split("<")[0]+"<span class='icons'><a class = 'editButton edit"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton delete"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-times'></i></a></span></li>";
             $('.todayList').append(newListElement);
         }
     }
