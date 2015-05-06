@@ -106,6 +106,17 @@ $(document).ready(function() {
         }
     }
     
+    $(".scheduleButton").on("click",function(){
+        $("#scheduleModal").show();
+        var firstThreeLetters = abbrDates[weekDay];
+        var dayButton = "button"+firstThreeLetters;
+        $('#scheduleModal').modal('show');
+        $("#"+dayButton).addClass("active");
+        $("#"+dayButton).prop("checked","checked");
+        $("#pickup-start").val("6:00");
+        $("#pickup-end").val("7:00");
+        $(".foodQuantity").val("0");
+    });
     
 //    Modal creator and parser
     function setupTable(){
@@ -354,6 +365,7 @@ $(document).ready(function() {
         event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
         event.stopPropagation();
     });
+    
 
     fillFuturePickups();
 });
