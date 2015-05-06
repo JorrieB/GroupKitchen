@@ -21,7 +21,6 @@ function fillFuturePickups(){
             var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
             $('.futureList').append(newListElement);
         }
-
     }
     
 
@@ -174,8 +173,8 @@ $(document).ready(function() {
         
         var dayArray = [$('#buttonSun').hasClass('active'),$('#buttonMon').hasClass('active'),$('#buttonTue').hasClass('active'),$('#buttonWed').hasClass('active'),$('#buttonThu').hasClass('active'),$('#buttonFri').hasClass('active'),$('#buttonSat').hasClass('active')];
         
-        console.log(document.getElementById('repeatCheckbox').checked);
-        console.log(dayArray);
+//        console.log(document.getElementById('repeatCheckbox').checked);
+//        console.log(dayArray);
         
         var foodValues = []
         
@@ -196,9 +195,9 @@ $(document).ready(function() {
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
                 $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
-                if(document.getElementById('repeatCheckbox').checked){
-                    //give repeat weekly affordance/class
-                }
+//                if(document.getElementById('repeatCheckbox').checked){
+//                    //give repeat weekly affordance/class
+//                }
             }
         }
         
