@@ -12,8 +12,8 @@ function fillFuturePickups(){
 
     for(var i = 0; i < 7-todayIndex-1; i++){
         var pickup = $(".future").eq(i)[0];
-        var foodsForPickup = $(pickup).children().children('.event').children('.eventHeader');
-        
+        var foodsForPickup = $(pickup).children().children('.event').children('.eventHeader').children('#foodString');
+                
         var dayIndex = todayIndex + i+1;
         
         var dayFormatted = $("#days").children().eq(dayIndex).html();
@@ -22,7 +22,8 @@ function fillFuturePickups(){
             var foodForPickup = $(foodsForPickup[index]).html();
 
             if(foodForPickup){
-var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+                console.log(foodForPickup);
+var newListElement = "<div class='futureEvent'><li>On: "+dayFormatted+", "+foodForPickup+"</li><i class='fa fa-times futureEventDelete'></i></div>";
             $('.futureList').append(newListElement);
             }
         }
@@ -232,24 +233,8 @@ $(document).ready(function() {
         
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
-                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
-//            var tip = d3.tip().attr('class', 'd3-tip')
-//              .html(function() {
-//                return "Meals: <span style='color:red'>jorrie</span>";
-//              })
-//            
-//            svg.call(tip);
-//                
-//            svg.selectAll('rect')
-//                
-//            .on('mouseover', tip.show)
-//            .on('mouseout', tip.hide);
-//                
-            
+                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader"><span id="foodString">'+foodString+'</span><i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
 
-//                if(document.getElementById('repeatCheckbox').checked){
-//                    //give repeat weekly affordance/class
-//                }
             }
         }
         
@@ -258,6 +243,13 @@ $(document).ready(function() {
         $(".eventDelete").click(function(event) {
             event.preventDefault();
             event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
+            event.stopPropagation();
+            updatePickups();
+        });
+        
+        $(".futureEventDelete").click(function(event) {
+            event.preventDefault();
+            event.target.parentNode.parentNode.remove(event.target.parentNode);
             event.stopPropagation();
             updatePickups();
         });

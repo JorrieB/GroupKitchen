@@ -279,14 +279,30 @@ li:hover .icons .fa-times {
 
 .eventHeader {
     border-bottom: 1px solid black;
+    position: relative;
 }
 
 .eventDelete {
-    position: relative;
+    position: absolute;
     left: 80%;
     color: gray;
 }
 
 .eventDelete:hover {
+    color: red;
+}
+
+.futureEvent{
+    position: relative;
+    width: 100%;
+}
+
+.futureEventDelete {
+    position: absolute;
+    color: gray;
+    top: 5px;
+    right: 0px;
+}
+.futureEventDelete:hover {
     color: red;
 }
