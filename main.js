@@ -12,6 +12,7 @@ function fillFuturePickups(){
     for(var i = 0; i < 7-todayIndex-1; i++){
         var pickup = $(".future").eq(i)[0];
         var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+		console.log("food for pickup: " + foodForPickup)
         
         var dayIndex = todayIndex + i+1;
         
@@ -24,6 +25,81 @@ function fillFuturePickups(){
     }
     
 
+}
+
+function addFuturePickup(date, foodstring){
+	 var newListElement = "<li>On: "+date+", "+foodstring+"</li>";
+     $('.futureList').append(newListElement);
+}
+
+//parses the date from the user's input
+function dateParser(d){
+	var monthDict = {'jan':1, 'feb':2, 'mar':3, 'apr':4, 'may':5, 'jun':6, 'jul':7, 'aug':8, 'sep':9, 'oct':10, 'nov':11, 'dec':12}
+	var monthToString = {1:"January", 2:"February", 3:"March", 4:"April", 5:"May", 6:"June", 7:"July", 8:"August", 9:"September", 10:"October", 11:"November", 12:"December"}
+	d = d.replace(',', '');
+	if ((d.indexOf('-')==-1)&&(d.indexOf('/')==-1)){
+		d = d.split(" ");
+		var day = d[1];
+		if (d.length <2 || d.length>3){
+			throw "Improper date"
+		}
+		var month = d[0];
+		if (isNaN(month)){
+			monthstring = month.substring(0,3).toLowerCase();
+			console.log(monthstring + " is the monthstring");
+			if (monthstring in monthDict) {
+				monthnum = monthDict[monthstring];
+			} else{
+				throw "Improper date"
+			}
+		} else {
+			monthnum = month;
+		}
+		if (monthnum in monthToString){
+			displaymonth = monthToString[monthnum]
+		} else {
+			throw "Improper date"
+		}
+		if (d.length == 3){
+			var year = d[2]
+		} else{
+			var year = ''
+		}
+	}else{
+		d = d.replace('/','-');
+		d = d.replace('/','-');
+		d = d.split('-');
+		var day = d[1];
+		if (d.length < 2 || d.length > 3){
+			throw "Improper date"
+		}
+		var month = parseInt(d[0])
+		console.log("month is " + month);
+		if (month in monthToString){
+			var displaymonth = monthToString[month]
+		} else {
+			throw "Improper date"
+		}
+		if (d.length == 3){
+			var year = d[2]
+		} else{
+			var year = ''
+		}
+	}
+	
+	if ((year != '') &&(year < 2015 || year >2020)){
+		throw "Improper date"
+	}
+	
+	if (year == ''){
+		yearstring = year;
+	} else{
+		yearstring = ', ' + year.toString();
+	}
+	
+	console.log("date being returned is " + displaymonth + ' ' + day.toString(day) + yearstring);
+	
+	return monthstring + ' ' + day.toString(day) + yearstring;
 }
 
 function fillTodaysPickup(){
@@ -161,6 +237,7 @@ $(document).ready(function() {
     $('#save-event-schedule').click(function() {
 		var start = $("#pickup-start").val();
 		var end = $("#pickup-end").val();
+		var manualDate = false;
 		$("#time_warning").css("display", "hidden");
 		
 		//check to make sure that the input gives integer hour or HH:MM format
@@ -168,6 +245,10 @@ $(document).ready(function() {
 			start = timeParser(start, $('#startPM').prop('checked'));
 		} catch (err) {
 			$("#time_warning").css("display", "inline");
+		}
+		
+		if ($("#pickup-date").val() != ""){
+			manualDate = true;
 		}
 		
         var startPM = ($('#startPM').prop('checked')) ? 'pm':'am';
@@ -210,15 +291,20 @@ $(document).ready(function() {
                 foodString += foodItems[foodItem] + ": " + numberOfThisFood + " ";
             }
         }
-        
-        for (var i = 0; i < dayArray.length; i++){
-            if (dayArray[i]){
-                $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
-//                if(document.getElementById('repeatCheckbox').checked){
-//                    //give repeat weekly affordance/class
-//                }
-            }
-        }
+        if (!manualDate){
+			for (var i = 0; i < dayArray.length; i++){
+				if (dayArray[i]){
+					$(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
+	//                if(document.getElementById('repeatCheckbox').checked){
+	//                    //give repeat weekly affordance/class
+	//                }
+				}
+			}
+		} else{
+			console.log("totally was a manual date");
+			var date = dateParser($("#pickup-date").val());
+			addPickup(date, foodString);
+		}
         
         updatePickups();
         
@@ -242,14 +328,7 @@ $(document).ready(function() {
     
 //    End modal parser/creator
 	
-	//TODO: MAKE THIS WORK
-	//Called when the "save changes" button is clicked on the scheduling modal and populates the calendar with the pickup
-    /*
-	function addPickup() {
-		var dayArray = [$('#buttonSun').prop('checked'),$('#buttonMon').prop('checked'),$('#buttonTue').prop('checked'),$('#buttonWed').prop('checked'),$('#buttonThu').prop('checked'),$('#buttonFri').prop('checked'),$('#buttonSat').prop('checked')];
-		console.log(dayArray + " beep boop");
-	}
-    */
+
 	
 	var dataset = [2, 3, 3, 1, 1, 2, 3];
 	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
