@@ -294,3 +294,8 @@ li:hover .icons .fa-times {
 .eventDelete:hover {
     color: red;
 }
+
+#today{
+    overflow: auto;
+    height: 150px;
+}
