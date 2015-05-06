@@ -43,18 +43,26 @@ function fillTodaysPickup(){
         var foodForPickup = $(foodsForPickup[index]).html();
         
         if(foodForPickup){
-            var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton' href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton' href='#'><i class='fa fa-times'></i></a></span></li>";
+            var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton edit"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton delete"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-times'></i></a></span></li>";
             $('.todayList').append(newListElement);
-            $('.deleteButton').on("click",deleteTodaysPickup);
-            $('.editButton').on("click",editTodaysPickup);
         }
     }
+    
+    $(".deleteButton").on("click",function(){
+        var index = $(this).data().pickupnum;
+        deleteTodaysPickup(index);
+    });
+    
+    $('.editButton').on("click",function(){
+        var index = $(this).data().pickupnum;
+        editTodaysPickup(index);
+    });
 
 }
 
-function editTodaysPickup(){
+function editTodaysPickup(index){
     $('#scheduleModal').modal('toggle');
-    deleteTodaysPickup();
+    deleteTodaysPickup(index);
     
     var date = new Date();
     var todayIndex = date.getDay();
@@ -62,14 +70,12 @@ function editTodaysPickup(){
     $(calButtons[todayIndex]).addClass('active');
 }
 
-function deleteTodaysPickup(){
-    console.log("delete pressed");
-    
+function deleteTodaysPickup(index){
     var date = new Date();
     var todayIndex = date.getDay();
 
     var pickup = $(".pickup").eq(todayIndex)[0];
-    var foodForPickup = $(pickup).children().children('.event').remove();
+    var foodForPickup = $(pickup).children().children('.event')[index].remove();
     
     
     updatePickups();
