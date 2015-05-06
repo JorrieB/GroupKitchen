@@ -38,13 +38,32 @@ function fillTodaysPickup(){
 
     if(foodForPickup){
         var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton' href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton' href='#'><i class='fa fa-times'></i></a></span></li>";
+        console.log(newListElement);
         $('.todayList').append(newListElement);
         $('.deleteButton').on("click",deleteTodaysPickup);
+        $('.editButton').on("click",editTodaysPickup);
     }
     
 }
 
+function editTodaysPickup(){
+    console.log("edit pressed");
+    
+    var date = new Date();
+    var todayIndex = date.getDay();
+
+    var pickup = $(".pickup").eq(todayIndex)[0];
+    var foodForPickup = $(pickup).children('.event');
+    
+    
+    $('#scheduleModal').modal('toggle');
+
+    
+}
+
 function deleteTodaysPickup(){
+    console.log("delete pressed");
+    
     var date = new Date();
     var todayIndex = date.getDay();
 
@@ -329,7 +348,6 @@ $(document).ready(function() {
     */
     
     $(".eventDelete").click(function(event) {
-        console.log("jorrie");
         event.preventDefault();
         event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
         event.stopPropagation();
