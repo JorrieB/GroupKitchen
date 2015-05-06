@@ -274,7 +274,7 @@ li:hover .icons .fa-times {
     border:1px solid black;
     font-size: 10pt;
     display: inline-block;
-    
+    cursor: pointer;
 }
 
 .eventHeader {

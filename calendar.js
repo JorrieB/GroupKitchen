@@ -2,7 +2,6 @@ function addPickup(){
     var dayOfWeek = $("#days").children().eq($(this).index()).html();
     var firstThreeLetters = dayOfWeek.substring(0,3);
     var dayButton = "button"+firstThreeLetters;
-    console.log(dayButton);
     $('#scheduleModal').modal('show');
     $("#"+dayButton).addClass("active");
     $("#"+dayButton).prop("checked","checked");

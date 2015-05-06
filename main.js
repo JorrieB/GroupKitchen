@@ -3,6 +3,7 @@ var setDay;
 var calendarIDs = ["#sundayCal","#mondayCal","#tuesdayCal","#wednesdayCal","#thursdayCal","#fridayCal","#saturdayCal"];
 var rawCalendarIDs = ["sundayCal","mondayCal","tuesdayCal","wednesdayCal","thursdayCal","fridayCal","saturdayCal"];
 var abbrDates = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var calButtons = ['#buttonSun','#buttonMon','#buttonTue','#buttonWed','#buttonThu','#buttonFri','#buttonSat'];
 
 function fillFuturePickups(){
     $('.futureList').empty();
@@ -11,20 +12,23 @@ function fillFuturePickups(){
 
     for(var i = 0; i < 7-todayIndex-1; i++){
         var pickup = $(".future").eq(i)[0];
-        var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
-		console.log("food for pickup: " + foodForPickup)
+
+        var foodsForPickup = $(pickup).children().children('.event').children('.eventHeader');
+
         
         var dayIndex = todayIndex + i+1;
         
         var dayFormatted = $("#days").children().eq(dayIndex).html();
 
-        if(foodForPickup){
-            var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
+        for( var index =0; index < foodsForPickup.length; index ++){
+            var foodForPickup = $(foodsForPickup[index]).html();
+
+            if(foodForPickup){
+var newListElement = "<li>On: "+dayFormatted+", "+foodForPickup+"</li>";
             $('.futureList').append(newListElement);
+            }
         }
     }
-    
-
 }
 
 function addFuturePickup(date, foodstring){
@@ -108,43 +112,48 @@ function fillTodaysPickup(){
     var todayIndex = date.getDay();
 
     var pickup = $(".pickup").eq(todayIndex)[0];
-    var foodForPickup = $(pickup).children().children('.event').children('.eventHeader').html();
+    var foodsForPickup = $(pickup).children().children('.event').children('.eventHeader');
+    var pickupTimes = $(pickup).children().children('.event').children('p');
+    
+    for( var index =0; index < foodsForPickup.length; index ++){
+        var pickupTime = $(pickupTimes[index]).html();
+        var foodForPickup = $(foodsForPickup[index]).html();
         
-    var pickupTime = $(pickup).children().children('.event').children('p').html();
-
-    if(foodForPickup){
-        var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton' href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton' href='#'><i class='fa fa-times'></i></a></span></li>";
-        console.log(newListElement);
-        $('.todayList').append(newListElement);
-        $('.deleteButton').on("click",deleteTodaysPickup);
-        $('.editButton').on("click",editTodaysPickup);
+        if(foodForPickup){
+            var newListElement = "<li>From: "+pickupTime+", "+foodForPickup+"<span class='icons'><a class = 'editButton edit"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-pencil'></i></a><a class = 'deleteButton delete"+index+"' data-pickupNum="+index+" href='#'><i class='fa fa-times'></i></a></span></li>";
+            $('.todayList').append(newListElement);
+        }
     }
     
+    $(".deleteButton").on("click",function(){
+        var index = $(this).data().pickupnum;
+        deleteTodaysPickup(index);
+    });
+    
+    $('.editButton').on("click",function(){
+        var index = $(this).data().pickupnum;
+        editTodaysPickup(index);
+    });
+
 }
 
-function editTodaysPickup(){
-    console.log("edit pressed");
-    
-    var date = new Date();
-    var todayIndex = date.getDay();
-
-    var pickup = $(".pickup").eq(todayIndex)[0];
-    var foodForPickup = $(pickup).children('.event');
-    
-    
+function editTodaysPickup(index){
     $('#scheduleModal').modal('toggle');
-
+    deleteTodaysPickup(index);
     
+    var date = new Date();
+    var todayIndex = date.getDay();
+        
+    $(calButtons[todayIndex]).addClass('active');
 }
 
-function deleteTodaysPickup(){
-    console.log("delete pressed");
-    
+function deleteTodaysPickup(index){
     var date = new Date();
     var todayIndex = date.getDay();
 
     var pickup = $(".pickup").eq(todayIndex)[0];
-    var foodForPickup = $(pickup).children().children('.event').remove();
+    var foodForPickup = $(pickup).children().children('.event')[index].remove();
+    
     
     updatePickups();
 }
@@ -180,6 +189,17 @@ $(document).ready(function() {
         }
     }
     
+    $(".scheduleButton").on("click",function(){
+        $("#scheduleModal").show();
+        var firstThreeLetters = abbrDates[weekDay];
+        var dayButton = "button"+firstThreeLetters;
+        $('#scheduleModal').modal('show');
+        $("#"+dayButton).addClass("active");
+        $("#"+dayButton).prop("checked","checked");
+        $("#pickup-start").val("6:00");
+        $("#pickup-end").val("7:00");
+        $(".foodQuantity").val("0");
+    });
     
 //    Modal creator and parser
     function setupTable(){
@@ -291,6 +311,7 @@ $(document).ready(function() {
                 foodString += foodItems[foodItem] + ": " + numberOfThisFood + " ";
             }
         }
+
         if (!manualDate){
 			for (var i = 0; i < dayArray.length; i++){
 				if (dayArray[i]){
@@ -431,6 +452,7 @@ $(document).ready(function() {
         event.target.parentNode.parentNode.parentNode.remove(event.target.parentNode.parentNode);
         event.stopPropagation();
     });
+    
 
     fillFuturePickups();
 });
