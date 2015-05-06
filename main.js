@@ -227,6 +227,20 @@ $(document).ready(function() {
         for (var i = 0; i < dayArray.length; i++){
             if (dayArray[i]){
                 $(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
+//            var tip = d3.tip().attr('class', 'd3-tip')
+//              .html(function() {
+//                return "Meals: <span style='color:red'>jorrie</span>";
+//              })
+//            
+//            svg.call(tip);
+//                
+//            svg.selectAll('rect')
+//                
+//            .on('mouseover', tip.show)
+//            .on('mouseout', tip.hide);
+//                
+            
+
 //                if(document.getElementById('repeatCheckbox').checked){
 //                    //give repeat weekly affordance/class
 //                }
