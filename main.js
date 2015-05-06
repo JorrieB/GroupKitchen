@@ -31,10 +31,10 @@ function fillFuturePickups(){
     }
 }
 
-function addFuturePickup(date, foodstring){
+/**function addFuturePickup(date, foodstring){
 	 var newListElement = "<li>On: "+date+", "+foodstring+"</li>";
      $('.futureList').append(newListElement);
-}
+} 
 
 //parses the date from the user's input
 function dateParser(d){
@@ -104,7 +104,7 @@ function dateParser(d){
 	console.log("date being returned is " + displaymonth + ' ' + day.toString(day) + yearstring);
 	
 	return monthstring + ' ' + day.toString(day) + yearstring;
-}
+} **/
 
 function fillTodaysPickup(){
     $('.todayList').empty();
@@ -257,7 +257,6 @@ $(document).ready(function() {
     $('#save-event-schedule').click(function() {
 		var start = $("#pickup-start").val();
 		var end = $("#pickup-end").val();
-		var manualDate = false;
 		$("#time_warning").css("display", "hidden");
 		
 		//check to make sure that the input gives integer hour or HH:MM format
@@ -266,10 +265,7 @@ $(document).ready(function() {
 		} catch (err) {
 			$("#time_warning").css("display", "inline");
 		}
-		
-		if ($("#pickup-date").val() != ""){
-			manualDate = true;
-		}
+
 		
         var startPM = ($('#startPM').prop('checked')) ? 'pm':'am';
         var endPM = ($('#endPM').prop('checked')) ? 'pm':'am';
@@ -312,7 +308,7 @@ $(document).ready(function() {
             }
         }
 
-        if (!manualDate){
+
 			for (var i = 0; i < dayArray.length; i++){
 				if (dayArray[i]){
 					$(calendarIDs[i]).append('<ul class="connectedSortable" id="draggable"><div class="event"><div class="eventHeader">'+foodString+'<i class="fa fa-times eventDelete"></i></a></div><p>' + start + startPM + '-' + end + endPM + '</p></div></ul>');
@@ -321,16 +317,7 @@ $(document).ready(function() {
 	//                }
 				}
 			}
-		} else{
-			console.log("totally was a manual date");
-			try{
-				var date = dateParser($("#pickup-date").val());
-			} catch(err) {
-				$("#date_warning").css("display", "inline");
-			}
-			addPickup(date, foodString);
-		}
-        
+		
         updatePickups();
         
         $(".eventDelete").click(function(event) {
